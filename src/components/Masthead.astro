@@ -12,9 +12,8 @@ const { showSectionNav = true } = Astro.props;
     {showSectionNav && (
       <nav class="masthead__nav mono" aria-label="Primary">
         <a href="/#portfolio">Portfolio</a>
-        <a href="/#background">Background</a>
         <a href="/resume">Resume</a>
-        <a href="/#contact">Contact</a>
+        <a href="/#contact" class="masthead__cta">Get in touch</a>
       </nav>
     )}
 
@@ -32,9 +31,8 @@ const { showSectionNav = true } = Astro.props;
 
   <nav id="mobile-nav" class="mobile-nav mono" aria-label="Mobile" hidden>
     <a href="/#portfolio">Portfolio</a>
-    <a href="/#background">Background</a>
     <a href="/resume">Resume</a>
-    <a href="/#contact">Contact</a>
+    <a href="/#contact" class="masthead__cta masthead__cta--mobile">Get in touch</a>
   </nav>
 </header>
 
@@ -78,6 +76,22 @@ const { showSectionNav = true } = Astro.props;
 
   .masthead__nav a:hover {
     color: var(--accent);
+  }
+
+  .masthead__cta {
+    color: var(--paper) !important;
+    background: var(--ink);
+    padding: var(--space-2) var(--space-5);
+  }
+
+  .masthead__cta:hover {
+    background: var(--accent-hover);
+    color: var(--paper) !important;
+  }
+
+  .masthead__cta--mobile {
+    display: inline-block;
+    align-self: flex-start;
   }
 
   .masthead__menu-btn {
