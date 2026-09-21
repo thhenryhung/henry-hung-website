@@ -148,15 +148,14 @@ const { projects } = Astro.props;
   .book-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: var(--space-11) 0 var(--space-13);
+    align-items: stretch;
+    padding: var(--space-8) 0 var(--space-11);
   }
 
   .book {
     position: relative;
     width: 100%;
-    max-width: 980px;
-    aspect-ratio: 15 / 8;
+    aspect-ratio: 21 / 8;
     perspective: 2600px;
     outline: none;
   }
@@ -209,8 +208,9 @@ const { projects } = Astro.props;
   .book__controls {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-8);
-    margin-top: var(--space-9);
+    margin-top: var(--space-7);
   }
 
   .book__control {
