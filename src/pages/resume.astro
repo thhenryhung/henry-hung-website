@@ -4,6 +4,7 @@ import Masthead from '../components/Masthead.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ResumeEntry from '../components/ResumeEntry.astro';
 import AchievementBlock from '../components/AchievementBlock.astro';
+import TimelineRail from '../components/TimelineRail.astro';
 
 const mckinseyAchievements = [
   {
@@ -72,46 +73,58 @@ const mckinseyAchievements = [
       <p class="resume__role">MBA candidate, Harvard Business School — formerly Engagement Manager, McKinsey & Company</p>
     </header>
 
-    <section class="resume__section">
-      <h2>Experience</h2>
-      <hr class="rule-heavy" />
-      <ResumeEntry
-        role="Engagement Manager"
-        org="McKinsey & Company"
-        location="Boston, MA (2024–2026) · Hong Kong (2022–2024)"
-        dateRange="2022 – 2026"
-        intro="Led 0-to-1 AI product development and enterprise platform modernization as lead product manager; earned top 5% ratings in every review and a fast-track promotion 6 months ahead of standard timeline."
-      />
-      <div class="resume__achievements">
-        {mckinseyAchievements.map((achievement) => (
-          <AchievementBlock headline={achievement.headline} bullets={achievement.bullets} />
-        ))}
-      </div>
-    </section>
+    <div class="resume-timeline">
+      <TimelineRail count={3} />
 
-    <section class="resume__section">
-      <h2>Education</h2>
-      <hr class="rule-heavy" />
-      <ResumeEntry
-        role="Candidate for Master of Business Administration"
-        org="Harvard Business School"
-        location="Cambridge, MA"
-        dateRange="2026 – 2028"
-        bullets={[
-          "Built Section J web app from scratch based on needs identified through 5+ interviews; drove adoption to >70% of section (>60 weekly active users) with requests from other sections to replicate the app",
-        ]}
-      />
-      <ResumeEntry
-        role="Master of Computer and Information Technology; BA Philosophy & Political Science, Phi Beta Kappa, Summa Cum Laude"
-        org="University of Pennsylvania"
-        location="Philadelphia, PA"
-        dateRange="2017 – 2022"
-        bullets={[
-          'Courses: Computer systems (selected as TA), artificial intelligence, machine learning, product design',
-          'Co-founded and led the Penn Philosophy Society; chairperson of Penn Manuscript Collective',
-        ]}
-      />
-    </section>
+      <div class="resume-timeline__content" data-timeline-content>
+        <section class="resume__section">
+          <h2>Experience</h2>
+          <hr class="rule-heavy" />
+          <div data-timeline-stop>
+            <ResumeEntry
+              role="Engagement Manager"
+              org="McKinsey & Company"
+              location="Boston, MA (2024–2026) · Hong Kong (2022–2024)"
+              dateRange="2022 – 2026"
+              intro="Led 0-to-1 AI product development and enterprise platform modernization as lead product manager; earned top 5% ratings in every review and a fast-track promotion 6 months ahead of standard timeline."
+            />
+          </div>
+          <div class="resume__achievements">
+            {mckinseyAchievements.map((achievement) => (
+              <AchievementBlock headline={achievement.headline} bullets={achievement.bullets} />
+            ))}
+          </div>
+        </section>
+
+        <section class="resume__section">
+          <h2>Education</h2>
+          <hr class="rule-heavy" />
+          <div data-timeline-stop>
+            <ResumeEntry
+              role="Candidate for Master of Business Administration"
+              org="Harvard Business School"
+              location="Cambridge, MA"
+              dateRange="2026 – 2028"
+              bullets={[
+                "Built Section J web app from scratch based on needs identified through 5+ interviews; drove adoption to >70% of section (>60 weekly active users) with requests from other sections to replicate the app",
+              ]}
+            />
+          </div>
+          <div data-timeline-stop>
+            <ResumeEntry
+              role="Master of Computer and Information Technology; BA Philosophy & Political Science, Phi Beta Kappa, Summa Cum Laude"
+              org="University of Pennsylvania"
+              location="Philadelphia, PA"
+              dateRange="2017 – 2022"
+              bullets={[
+                'Courses: Computer systems (selected as TA), artificial intelligence, machine learning, product design',
+                'Co-founded and led the Penn Philosophy Society; chairperson of Penn Manuscript Collective',
+              ]}
+            />
+          </div>
+        </section>
+      </div>
+    </div>
 
     <section class="resume__section resume__section--split">
       <div>
@@ -165,6 +178,23 @@ const mckinseyAchievements = [
     line-height: 1.6;
     color: var(--text-soft);
     max-width: 640px;
+  }
+
+  .resume-timeline {
+    margin-top: var(--space-14);
+  }
+
+  @media (min-width: 1024px) {
+    .resume-timeline {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: var(--space-9);
+      align-items: stretch;
+    }
+  }
+
+  .resume-timeline .resume__section:first-child {
+    margin-top: 0;
   }
 
   .resume__section {
