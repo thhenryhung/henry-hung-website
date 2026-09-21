@@ -5,6 +5,7 @@ import Masthead from '../components/Masthead.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import ProjectRow from '../components/ProjectRow.astro';
+import PortfolioBook from '../components/PortfolioBook.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) =>
@@ -18,7 +19,8 @@ const projects = (await getCollection('projects')).sort((a, b) =>
 
   <section class="container" id="portfolio">
     <SectionHeader title="Portfolio" descriptor="Selected work, 20XX–present" />
-    <div class="project-rows">
+
+    <div class="project-rows portfolio-list-fallback">
       {projects.map((project) => (
         <ProjectRow
           order={project.data.order}
@@ -38,6 +40,10 @@ const projects = (await getCollection('projects')).sort((a, b) =>
         />
       ))}
     </div>
+
+    <div class="portfolio-book-wrap">
+      <PortfolioBook projects={projects} />
+    </div>
   </section>
 
   <SiteFooter />
@@ -47,5 +53,37 @@ const projects = (await getCollection('projects')).sort((a, b) =>
   .project-rows {
     display: flex;
     flex-direction: column;
+  }
+
+  .portfolio-book-wrap {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-book-wrap {
+      display: block;
+    }
+
+    .portfolio-list-fallback {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+    .portfolio-book-wrap {
+      display: none;
+    }
+
+    .portfolio-list-fallback {
+      display: flex;
+    }
+  }
+
+  :global(.no-js) .portfolio-book-wrap {
+    display: none !important;
+  }
+
+  :global(.no-js) .portfolio-list-fallback {
+    display: flex !important;
   }
 </style>
