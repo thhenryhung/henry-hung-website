@@ -1,0 +1,72 @@
+---
+import PortraitFigure from './PortraitFigure.astro';
+---
+
+<section class="hero container">
+  <div class="hero__portrait">
+    <PortraitFigure />
+  </div>
+  <div class="hero__copy">
+    <h1 class="hero__headline">
+      I enjoy understanding how <span class="accent">systems and people</span> work — and applying
+      that insight to build products that solve real problems.
+    </h1>
+    <p class="hero__lead">
+      Concept to launch on 0-to-1 AI products and enterprise platform modernization. Four years
+      at McKinsey in Hong Kong and Boston, most recently Engagement Manager leading product; now
+      an MBA candidate at Harvard Business School.
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    gap: var(--space-13);
+    padding-top: var(--space-14);
+    padding-bottom: var(--space-14);
+    align-items: flex-start;
+  }
+
+  .hero__copy {
+    flex: 1;
+  }
+
+  .hero__headline {
+    font-size: 46px;
+    line-height: 1.16;
+    letter-spacing: -0.012em;
+    max-width: 660px;
+  }
+
+  .hero__headline .accent {
+    color: var(--accent);
+  }
+
+  .hero__lead {
+    margin-top: var(--space-9);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 640px;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      gap: var(--space-8);
+      padding-top: var(--space-11);
+      padding-bottom: var(--space-11);
+    }
+
+    .hero__headline {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .hero__lead {
+      font-size: 17px;
+      margin-top: var(--space-6);
+    }
+  }
+</style>

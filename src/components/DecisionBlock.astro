@@ -1,0 +1,74 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  chose: string;
+  over: string;
+  because: string;
+}
+const { label, title, chose, over, because } = Astro.props;
+---
+
+<div class="decision-block">
+  <p class="mono decision-block__label">{label}</p>
+  <h3 class="decision-block__title">{title}</h3>
+
+  <div class="decision-block__row">
+    <span class="mono decision-block__row-label">Chose</span>
+    <p class="decision-block__row-value">{chose}</p>
+  </div>
+  <div class="decision-block__row">
+    <span class="mono decision-block__row-label">Over</span>
+    <p class="decision-block__row-value">{over}</p>
+  </div>
+  <div class="decision-block__row">
+    <span class="mono decision-block__row-label">Because</span>
+    <p class="decision-block__row-value">{because}</p>
+  </div>
+</div>
+
+<style>
+  .decision-block {
+    padding: var(--space-9) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .decision-block__label {
+    color: var(--accent);
+  }
+
+  .decision-block__title {
+    font-size: 23px;
+    line-height: 1.3;
+    margin-top: var(--space-2);
+  }
+
+  .decision-block__row {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .decision-block__row-label {
+    color: var(--meta);
+    padding-top: var(--space-1);
+  }
+
+  .decision-block__row-value {
+    font-size: 16px;
+    line-height: 1.58;
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .decision-block__title {
+      font-size: 22px;
+    }
+
+    .decision-block__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

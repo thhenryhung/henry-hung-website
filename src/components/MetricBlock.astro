@@ -1,0 +1,66 @@
+---
+interface Props {
+  metric: string;
+  caption: string;
+  context?: string;
+  variant?: 'project' | 'rail' | 'band';
+}
+const { metric, caption, context, variant = 'project' } = Astro.props;
+---
+
+<div class={`metric-block metric-block--${variant}`}>
+  <hr class="rule-heavy" />
+  <div class="metric-block__value">{metric}</div>
+  <p class="metric-block__caption">{caption}</p>
+  {context && <p class="metric-block__context mono">{context}</p>}
+</div>
+
+<style>
+  .metric-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .metric-block__value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: var(--space-5);
+    line-height: 1;
+  }
+
+  .metric-block--project .metric-block__value {
+    font-size: 42px;
+  }
+
+  .metric-block--rail .metric-block__value {
+    font-size: 44px;
+  }
+
+  .metric-block--band .metric-block__value {
+    font-size: 34px;
+  }
+
+  .metric-block__caption {
+    margin-top: var(--space-3);
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .metric-block__context {
+    margin-top: var(--space-2);
+    color: var(--meta);
+  }
+
+  @media (max-width: 480px) {
+    .metric-block--project .metric-block__value,
+    .metric-block--rail .metric-block__value {
+      font-size: 36px;
+    }
+
+    .metric-block--band .metric-block__value {
+      font-size: 34px;
+    }
+  }
+</style>

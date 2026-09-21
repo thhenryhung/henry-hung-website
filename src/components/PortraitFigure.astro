@@ -1,0 +1,34 @@
+---
+---
+
+<figure class="portrait">
+  <img
+    class="portrait__image"
+    src="/images/portrait.jpg"
+    alt="Henry Hung standing outdoors in Death Valley, badlands in the background"
+    width="212"
+    height="258"
+  />
+</figure>
+
+<style>
+  .portrait {
+    margin: 0;
+    display: inline-block;
+  }
+
+  .portrait__image {
+    display: block;
+    width: 212px;
+    height: 258px;
+    object-fit: cover;
+    object-position: 50% 25%;
+  }
+
+  @media (max-width: 768px) {
+    .portrait__image {
+      width: 152px;
+      height: 186px;
+    }
+  }
+</style>

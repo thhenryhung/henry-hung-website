@@ -1,0 +1,54 @@
+---
+interface Bullet {
+  label: string;
+  text: string;
+}
+interface Props {
+  headline: string;
+  bullets: Bullet[];
+}
+const { headline, bullets } = Astro.props;
+---
+
+<div class="achievement">
+  <p class="achievement__headline">{headline}</p>
+  <ul class="achievement__bullets">
+    {bullets.map((bullet) => (
+      <li><strong>{bullet.label}:</strong> {bullet.text}</li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .achievement {
+    margin-top: var(--space-8);
+  }
+
+  .achievement__headline {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 680px;
+  }
+
+  .achievement__bullets {
+    margin: var(--space-5) 0 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 680px;
+  }
+
+  .achievement__bullets li {
+    font-size: 16px;
+    line-height: 1.58;
+    color: var(--text);
+  }
+
+  .achievement__bullets strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+</style>

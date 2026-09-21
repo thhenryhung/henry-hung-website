@@ -1,0 +1,87 @@
+---
+import FactList from './FactList.astro';
+import MetricBlock from './MetricBlock.astro';
+
+interface Fact {
+  label: string;
+  value: string;
+}
+interface Props {
+  facts: Fact[];
+  metric: string;
+  metricCaption: string;
+}
+const { facts, metric, metricCaption } = Astro.props;
+---
+
+<aside class="case-rail">
+  <a href="/#portfolio" class="mono case-rail__back">← Back to portfolio</a>
+
+  <div class="case-rail__facts">
+    <p class="mono case-rail__label">At a glance</p>
+    <FactList facts={facts} />
+  </div>
+
+  <div class="case-rail__metric">
+    <MetricBlock metric={metric} caption={metricCaption} variant="rail" />
+  </div>
+
+  <nav class="case-rail__nav mono" aria-label="Case study sections">
+    <a href="#problem">01 — The problem</a>
+    <a href="#built">02 — What I built</a>
+    <a href="#decisions">03 — Key decisions</a>
+    <a href="#outcome">04 — Outcome</a>
+  </nav>
+</aside>
+
+<style>
+  .case-rail {
+    position: sticky;
+    top: var(--space-11);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-11);
+  }
+
+  .case-rail__back {
+    color: var(--text-soft);
+  }
+
+  .case-rail__label {
+    color: var(--meta);
+    margin-bottom: var(--space-3);
+  }
+
+  .case-rail__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--rule);
+  }
+
+  .case-rail__nav a {
+    color: var(--text-soft);
+  }
+
+  .case-rail__nav a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .case-rail {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+
+    .case-rail__back {
+      grid-column: 1 / -1;
+    }
+
+    .case-rail__nav {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

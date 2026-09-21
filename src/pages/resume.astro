@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/Masthead.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ResumeEntry from '../components/ResumeEntry.astro';
+import AchievementBlock from '../components/AchievementBlock.astro';
+
+const mckinseyAchievements = [
+  {
+    headline:
+      'Built the first in-house AI-native products for a major insurer, projected to reach 1M+ users and $50M+ net income impact',
+    bullets: [
+      {
+        label: '0-to-1 product delivery',
+        text: 'Developed 2 products (customer service agent, insurance agent copilot) from concept to full prototypes, as sole Product Manager leading a team of 10+ developers and designers',
+      },
+      {
+        label: 'Customer needs discovery',
+        text: 'Improved self-service resolution by 10% and suggestion acceptance by 30%, by enhancing retrieval accuracy and answer relevance through targeted RAG and sub-agent routing; translated insights from 20+ user interviews into redesigned user journeys',
+      },
+      {
+        label: 'Product strategy & roadmap',
+        text: 'Created a multi-year product strategy and implementation roadmap, securing client C-suite sponsorship to further build and scale both products with projected 1M+ users',
+      },
+    ],
+  },
+  {
+    headline:
+      'Turned around 4 months of delay in product modernization effort with projected $300M+ annualized bottom-line impact for a Fortune 100 financial institution',
+    bullets: [
+      {
+        label: 'Agentic tool creation',
+        text: 'Increased requirements development throughput >8X across 10+ product owners by building agentic tools converting legacy product documentation into epics and user stories',
+      },
+      {
+        label: 'Feature prioritization',
+        text: 'Unblocked development delays by reprioritizing roadmap, cutting bottom 40% low-value nice-to-have features, and resolving 30+ cross-functional blockers',
+      },
+      {
+        label: 'Data-driven decision-making',
+        text: 'Reduced decision turnaround time from >20 days to 7 days by launching a real-time Tableau decision dashboard and defining 9 north-star decision criteria',
+      },
+    ],
+  },
+  {
+    headline:
+      'Directed customer experience transformation leading to 10%+ growth in priority customer segment for a large sports entertainment operator',
+    bullets: [
+      {
+        label: 'Growth experimentation',
+        text: 'Outperformed customer growth target 2X by selecting the best customer value propositions based on 10+ A/B tests and focus groups',
+      },
+      {
+        label: 'Cross-functional product execution',
+        text: 'Led 5 cross-functional agile pods through initiative launches such as a new customer acquisition program (3X conversion vs. past campaigns)',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Résumé — Henry Hung" description="Henry Hung's résumé — MBA candidate at Harvard Business School, formerly Engagement Manager at McKinsey & Company.">
+  <Masthead />
+
+  <div class="container resume">
+    <header class="resume__header">
+      <p class="eyebrow">Résumé</p>
+      <div class="resume__header-row">
+        <h1>Henry Hung</h1>
+        <a href="/henry-hung-resume.pdf" download class="mono resume__download">Download PDF ↓</a>
+      </div>
+      <p class="resume__role">MBA candidate, Harvard Business School — formerly Engagement Manager, McKinsey & Company</p>
+    </header>
+
+    <section class="resume__section">
+      <h2>Experience</h2>
+      <hr class="rule-heavy" />
+      <ResumeEntry
+        role="Engagement Manager"
+        org="McKinsey & Company"
+        location="Boston, MA (2024–2026) · Hong Kong (2022–2024)"
+        dateRange="2022 – 2026"
+        intro="Led 0-to-1 AI product development and enterprise platform modernization as lead product manager; earned top 5% ratings in every review and a fast-track promotion 6 months ahead of standard timeline."
+      />
+      <div class="resume__achievements">
+        {mckinseyAchievements.map((achievement) => (
+          <AchievementBlock headline={achievement.headline} bullets={achievement.bullets} />
+        ))}
+      </div>
+    </section>
+
+    <section class="resume__section">
+      <h2>Education</h2>
+      <hr class="rule-heavy" />
+      <ResumeEntry
+        role="Candidate for Master of Business Administration"
+        org="Harvard Business School"
+        location="Cambridge, MA"
+        dateRange="2026 – 2028"
+        bullets={[
+          "Built Section J web app from scratch based on needs identified through 5+ interviews; drove adoption to >70% of section (>60 weekly active users) with requests from other sections to replicate the app",
+        ]}
+      />
+      <ResumeEntry
+        role="Master of Computer and Information Technology; BA Philosophy & Political Science, Phi Beta Kappa, Summa Cum Laude"
+        org="University of Pennsylvania"
+        location="Philadelphia, PA"
+        dateRange="2017 – 2022"
+        bullets={[
+          'Courses: Computer systems (selected as TA), artificial intelligence, machine learning, product design',
+          'Co-founded and led the Penn Philosophy Society; chairperson of Penn Manuscript Collective',
+        ]}
+      />
+    </section>
+
+    <section class="resume__section resume__section--split">
+      <div>
+        <h2>Technical</h2>
+        <hr class="rule-heavy" />
+        <p class="resume__skills">Figma, Jira, Miro, Confluence · Python, Java, SQL, Tableau · Claude Code, Codex, Cursor</p>
+      </div>
+      <div>
+        <h2>Personal</h2>
+        <hr class="rule-heavy" />
+        <p class="resume__skills">
+          Fluent in English, Mandarin, and Cantonese. Enjoy trail running (100 km Trailwalker race), hiking (70 km
+          Patagonia trek), soccer (led McKinsey Boston team), and reading — especially the history of business and
+          technology.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .resume {
+    padding-top: var(--space-11);
+    padding-bottom: var(--space-14);
+  }
+
+  .resume__header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-8);
+    margin-top: var(--space-2);
+  }
+
+  .resume__header h1 {
+    font-size: 44px;
+    line-height: 1.14;
+    letter-spacing: -0.012em;
+  }
+
+  .resume__download {
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .resume__role {
+    margin-top: var(--space-5);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 640px;
+  }
+
+  .resume__section {
+    margin-top: var(--space-14);
+  }
+
+  .resume__section h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    padding-bottom: var(--space-6);
+  }
+
+  .resume__section--split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-13);
+  }
+
+  .resume__skills {
+    margin-top: var(--space-6);
+    font-size: 16px;
+    line-height: 1.58;
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .resume__section--split {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .resume__header h1 {
+      font-size: 27px;
+    }
+
+    .resume__header-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+
+    .resume__section h2 {
+      font-size: 28px;
+    }
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+interface Props {
+  role: string;
+  org: string;
+  location: string;
+  dateRange: string;
+  intro?: string;
+  bullets?: string[];
+}
+const { role, org, location, dateRange, intro, bullets } = Astro.props;
+---
+
+<div class="resume-entry">
+  <div class="resume-entry__head">
+    <div>
+      <h3 class="resume-entry__role">{role}</h3>
+      <p class="mono resume-entry__org">{org} — {location}</p>
+    </div>
+    <p class="mono resume-entry__dates">{dateRange}</p>
+  </div>
+  {intro && <p class="resume-entry__intro">{intro}</p>}
+  {bullets && bullets.length > 0 && (
+    <ul class="resume-entry__bullets">
+      {bullets.map((bullet) => <li>{bullet}</li>)}
+    </ul>
+  )}
+</div>
+
+<style>
+  .resume-entry {
+    padding: var(--space-9) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .resume-entry__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-8);
+  }
+
+  .resume-entry__role {
+    font-size: 23px;
+    line-height: 1.3;
+  }
+
+  .resume-entry__org {
+    margin-top: var(--space-2);
+    color: var(--meta);
+  }
+
+  .resume-entry__dates {
+    color: var(--meta);
+    white-space: nowrap;
+  }
+
+  .resume-entry__intro {
+    margin-top: var(--space-6);
+    font-size: 17px;
+    line-height: 1.68;
+    color: var(--text);
+    max-width: 680px;
+  }
+
+  .resume-entry__bullets {
+    margin: var(--space-6) 0 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 680px;
+  }
+
+  .resume-entry__bullets li {
+    font-size: 16px;
+    line-height: 1.58;
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .resume-entry__head {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+  }
+</style>

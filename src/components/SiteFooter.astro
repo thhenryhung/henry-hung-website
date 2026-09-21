@@ -1,0 +1,83 @@
+---
+import FactList from './FactList.astro';
+
+const contactFacts = [
+  { label: 'Email', value: 'thhenryhung@gmail.com', href: 'mailto:thhenryhung@gmail.com' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/henrythhung', href: 'https://www.linkedin.com/in/henrythhung/' },
+  { label: 'GitHub', value: 'github.com/thhenryhung', href: 'https://github.com/thhenryhung/' },
+];
+---
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <hr class="rule-heavy" />
+    <div class="site-footer__grid">
+      <div class="site-footer__left">
+        <h2>Get in touch</h2>
+        <p class="site-footer__positioning">
+          [One line on what you're looking for — the role, the timing, and the kind of team.
+          This is the only place on the page where you get to ask for something directly.]
+        </p>
+      </div>
+      <div class="site-footer__right">
+        <FactList facts={contactFacts} />
+      </div>
+    </div>
+    <div class="site-footer__bottom mono">
+      <span>Henry Hung — Boston, MA</span>
+      <span>English · Mandarin · Cantonese</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-top: var(--space-14);
+    padding-bottom: var(--space-13);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-13);
+    padding-top: var(--space-11);
+  }
+
+  .site-footer h2 {
+    font-size: 46px;
+    line-height: 1.1;
+  }
+
+  .site-footer__positioning {
+    margin-top: var(--space-8);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 480px;
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-14);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--rule);
+    color: var(--meta);
+  }
+
+  @media (max-width: 768px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .site-footer h2 {
+      font-size: 32px;
+    }
+
+    .site-footer__bottom {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>

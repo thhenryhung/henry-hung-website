@@ -1,0 +1,79 @@
+---
+interface Cell {
+  metric: string;
+  caption: string;
+}
+interface Props {
+  cells: Cell[];
+}
+const { cells } = Astro.props;
+---
+
+<div class="metric-band">
+  <hr class="rule-heavy" />
+  <div class="metric-band__row">
+    {cells.map((cell) => (
+      <div class="metric-band__cell">
+        <div class="metric-band__value">{cell.metric}</div>
+        <p class="metric-band__caption">{cell.caption}</p>
+      </div>
+    ))}
+  </div>
+  <hr class="rule-hairline" />
+</div>
+
+<style>
+  .metric-band__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .metric-band__cell {
+    padding: var(--space-8) var(--space-8) var(--space-8) 0;
+    border-right: 1px solid var(--rule);
+  }
+
+  .metric-band__cell:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .metric-band__cell:not(:first-child) {
+    padding-left: var(--space-8);
+  }
+
+  .metric-band__value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .metric-band__caption {
+    margin-top: var(--space-3);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 768px) {
+    .metric-band__row {
+      grid-template-columns: 1fr;
+    }
+
+    .metric-band__cell {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+      padding: var(--space-6) 0;
+    }
+
+    .metric-band__cell:first-child {
+      padding-left: 0;
+    }
+
+    .metric-band__cell:last-child {
+      border-bottom: none;
+    }
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/Masthead.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import FactList from '../components/FactList.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) =>
+  a.data.order.localeCompare(b.data.order)
+);
+
+const backgroundFacts = [
+  { label: 'Now', value: 'MBA candidate, Harvard Business School' },
+  { label: 'Previously', value: 'Engagement Manager, McKinsey — Hong Kong 2022–2024, Boston 2024–2026' },
+  { label: 'Education', value: 'MCIT, and BA Philosophy & Political Science — University of Pennsylvania' },
+  { label: 'Languages', value: 'English, Mandarin, Cantonese' },
+];
+---
+
+<BaseLayout title="Henry Hung — Product Manager">
+  <Masthead />
+  <Hero />
+
+  <section class="container" id="portfolio">
+    <SectionHeader title="Portfolio" descriptor="Selected work, 20XX–present" />
+    <div class="project-rows">
+      {projects.map((project) => (
+        <ProjectRow
+          order={project.data.order}
+          title={project.data.title}
+          descriptor={project.data.descriptor}
+          problem={project.data.problem}
+          built={project.data.built}
+          metric={project.data.metric}
+          metricCaption={project.data.metricCaption}
+          href={project.data.hasCaseStudy ? `/work/${project.id}` : undefined}
+          demoUrl={project.data.demoUrl}
+          demoNote={project.data.demoNote}
+          screenshot={project.data.screenshot}
+          screenshotAlt={project.data.screenshotAlt}
+          diagramLabels={project.data.diagramLabels}
+          tag={project.data.tag}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="container background" id="background">
+    <SectionHeader title="Background" />
+    <div class="background__grid">
+      <div class="background__prose">
+        <p>
+          I studied philosophy and political science first — Phi Beta Kappa, summa cum laude —
+          then went back to Penn for a master's in computer and information technology, where I
+          TA'd Computer Systems. Philosophy taught me to take a question apart before answering
+          it; the CS degree meant I could sit with engineers and argue about the answer.
+        </p>
+        <p>
+          Four years at McKinsey followed — Hong Kong, then Boston — ending as an Engagement
+          Manager running product on AI builds and platform modernization. I don't have "product
+          manager" on an old business card, but discovery, prioritization and shipping is the
+          work I've been doing.
+        </p>
+        <p>
+          Away from a screen I run trails: 100 km at Trailwalker, 70 km across Patagonia. I led
+          McKinsey Boston's soccer team, and I read more business and technology history than is
+          strictly necessary.
+        </p>
+      </div>
+      <div class="background__rail">
+        <FactList facts={backgroundFacts} />
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .project-rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .background {
+    padding-top: var(--space-13);
+    padding-bottom: var(--space-14);
+  }
+
+  .background__grid {
+    display: grid;
+    grid-template-columns: 660px 300px;
+    gap: var(--space-13);
+    padding-top: var(--space-8);
+  }
+
+  .background__prose {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    font-size: 17px;
+    line-height: 1.72;
+    color: var(--text);
+    max-width: 680px;
+  }
+
+  @media (max-width: 1024px) {
+    .background__grid {
+      grid-template-columns: 1fr 300px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .background__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

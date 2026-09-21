@@ -1,0 +1,259 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Masthead from '../../components/Masthead.astro';
+import CaseStudyRail from '../../components/CaseStudyRail.astro';
+import MetricBand from '../../components/MetricBand.astro';
+import PullQuote from '../../components/PullQuote.astro';
+import DiagramFrame from '../../components/DiagramFrame.astro';
+import DecisionBlock from '../../components/DecisionBlock.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => data.hasCaseStudy);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const p = project.data;
+
+const railFacts = [
+  { label: 'Context', value: p.context ?? '' },
+  { label: 'Role', value: p.role ?? '' },
+  { label: 'Team', value: p.team ?? '' },
+  { label: 'Scope', value: p.scope ?? '' },
+  { label: 'Research', value: p.research ?? '' },
+].filter((f) => f.value);
+
+const bandCells = p.bandMetrics ?? [
+  { metric: p.metric, caption: p.metricCaption },
+  { metric: '—', caption: '[placeholder — second outcome metric]' },
+  { metric: '—', caption: '[placeholder — third outcome metric]' },
+];
+
+const problemParagraphs = (p.caseStudyProblem ?? p.problem).split('\n\n');
+const builtText = p.caseStudyBuilt ?? p.built;
+const outcomeParagraphs = (p.outcome ?? '').split('\n\n').filter(Boolean);
+
+const allProjects = (await getCollection('projects')).sort((a, b) =>
+  a.data.order.localeCompare(b.data.order)
+);
+const currentIndex = allProjects.findIndex((proj) => proj.id === project.id);
+const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
+---
+
+<BaseLayout title={`${p.title} — Henry Hung`} description={p.descriptor}>
+  <Masthead showSectionNav={false} />
+
+  <div class="container case-study">
+    <CaseStudyRail facts={railFacts} metric={p.metric} metricCaption={p.metricCaption} />
+
+    <article class="case-study__article">
+      <p class="eyebrow">Case study — {p.order}</p>
+      <h1 class="case-study__title">{p.title}</h1>
+      <p class="case-study__standfirst">{p.standfirst}</p>
+
+      <MetricBand cells={bandCells} />
+
+      <section id="problem">
+        <h2 class="case-study__section-h2"><span class="mono case-study__section-num">01</span> The problem</h2>
+        {problemParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {p.pullQuote && <PullQuote cite={p.pullQuoteCite}>{p.pullQuote}</PullQuote>}
+      </section>
+
+      <section id="built">
+        <h2 class="case-study__section-h2"><span class="mono case-study__section-num">02</span> What I built</h2>
+        <p>{builtText}</p>
+        <DiagramFrame label={`Architecture diagram for ${p.title}`}>
+          <svg class="diagram-horizontal" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-meta)" font-size="7.5" fill="var(--text-muted)">
+            <rect x="6" y="10" width="52" height="24" fill="none" stroke="var(--diagram-line)" />
+            <text x="32" y="25" text-anchor="middle">CUSTOMER</text>
+            <rect x="66" y="10" width="56" height="24" fill="none" stroke="var(--diagram-line)" />
+            <text x="94" y="25" text-anchor="middle">QUESTION</text>
+            <rect x="130" y="10" width="56" height="24" fill="none" stroke="var(--diagram-line)" />
+            <text x="158" y="25" text-anchor="middle">RETRIEVAL</text>
+            <rect x="194" y="10" width="50" height="24" fill="none" stroke="var(--diagram-line)" />
+            <text x="219" y="25" text-anchor="middle">ROUTER</text>
+
+            <rect x="128" y="46" width="60" height="20" fill="none" stroke="var(--diagram-faint)" />
+            <text x="158" y="59" text-anchor="middle">CLIENT CONTENT</text>
+
+            <rect x="194" y="46" width="66" height="16" fill="none" stroke="var(--diagram-line)" />
+            <text x="227" y="57" text-anchor="middle">SUB-AGENT A</text>
+            <rect x="194" y="68" width="66" height="16" fill="none" stroke="var(--diagram-line)" />
+            <text x="227" y="79" text-anchor="middle">SUB-AGENT B</text>
+            <rect x="194" y="90" width="66" height="16" fill="none" stroke="var(--diagram-line)" />
+            <text x="227" y="101" text-anchor="middle">SUB-AGENT C</text>
+
+            <rect x="130" y="114" width="56" height="24" fill="none" stroke="var(--diagram-line)" />
+            <text x="158" y="129" text-anchor="middle">ANSWER</text>
+            <rect x="6" y="114" width="82" height="24" fill="none" stroke="var(--diagram-line)" />
+            <text x="47" y="129" text-anchor="middle">HUMAN AGENT</text>
+
+            <line x1="58" y1="22" x2="66" y2="22" stroke="var(--diagram-faint)" />
+            <line x1="122" y1="22" x2="130" y2="22" stroke="var(--diagram-faint)" />
+            <line x1="186" y1="22" x2="194" y2="22" stroke="var(--diagram-faint)" />
+            <line x1="158" y1="46" x2="158" y2="34" stroke="var(--diagram-faint)" />
+            <line x1="219" y1="34" x2="219" y2="46" stroke="var(--diagram-faint)" />
+            <line x1="194" y1="76" x2="186" y2="126" stroke="var(--diagram-faint)" />
+            <line x1="130" y1="126" x2="88" y2="126" stroke="var(--diagram-faint)" />
+          </svg>
+          <svg class="diagram-vertical" viewBox="0 0 342 320" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-meta)" font-size="9" fill="var(--text-muted)">
+            <rect x="86" y="6" width="170" height="26" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="23" text-anchor="middle">CUSTOMER</text>
+            <rect x="86" y="42" width="170" height="26" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="59" text-anchor="middle">QUESTION</text>
+            <rect x="86" y="78" width="170" height="26" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="95" text-anchor="middle">RETRIEVAL</text>
+            <rect x="86" y="114" width="170" height="22" fill="none" stroke="var(--diagram-faint)" />
+            <text x="171" y="129" text-anchor="middle">CLIENT CONTENT</text>
+            <rect x="86" y="146" width="170" height="26" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="163" text-anchor="middle">ROUTER</text>
+            <rect x="86" y="182" width="170" height="22" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="197" text-anchor="middle">SUB-AGENT A / B / C</text>
+            <rect x="86" y="214" width="170" height="26" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="231" text-anchor="middle">ANSWER</text>
+            <rect x="86" y="250" width="170" height="26" fill="none" stroke="var(--diagram-line)" />
+            <text x="171" y="267" text-anchor="middle">HUMAN AGENT</text>
+
+            <line x1="171" y1="32" x2="171" y2="42" stroke="var(--diagram-faint)" />
+            <line x1="171" y1="68" x2="171" y2="78" stroke="var(--diagram-faint)" />
+            <line x1="171" y1="104" x2="171" y2="146" stroke="var(--diagram-faint)" />
+            <line x1="171" y1="172" x2="171" y2="182" stroke="var(--diagram-faint)" />
+            <line x1="171" y1="204" x2="171" y2="214" stroke="var(--diagram-faint)" />
+            <line x1="171" y1="240" x2="171" y2="250" stroke="var(--diagram-faint)" />
+          </svg>
+        </DiagramFrame>
+        {p.architectureNote && <p class="mono case-study__diagram-note">{p.architectureNote}</p>}
+      </section>
+
+      <section id="decisions">
+        <h2 class="case-study__section-h2"><span class="mono case-study__section-num">03</span> Key decisions</h2>
+        {p.decisions?.map((d, i) => (
+          <DecisionBlock label={`Decision 0${i + 1}`} title={d.title} chose={d.chose} over={d.over} because={d.because} />
+        ))}
+      </section>
+
+      <section id="outcome">
+        <h2 class="case-study__section-h2"><span class="mono case-study__section-num">04</span> Outcome</h2>
+        {outcomeParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+    </article>
+  </div>
+
+  <footer class="container case-study__footer">
+    <hr class="rule-heavy" />
+    <div class="case-study__footer-row">
+      <a href="/#portfolio" class="mono">← Back to portfolio</a>
+      <a href={`/work/${nextProject.id}`} class="mono">Next: {nextProject.data.title} →</a>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .case-study {
+    display: grid;
+    grid-template-columns: 300px 748px;
+    gap: var(--space-13);
+    padding-top: var(--space-11);
+    padding-bottom: var(--space-14);
+  }
+
+  .case-study__title {
+    font-size: 44px;
+    line-height: 1.14;
+    letter-spacing: -0.012em;
+    margin-top: var(--space-3);
+  }
+
+  .case-study__standfirst {
+    margin-top: var(--space-8);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 640px;
+  }
+
+  .case-study__article > :global(section) {
+    margin-top: var(--space-14);
+  }
+
+  .case-study__article :global(.metric-band) {
+    margin-top: var(--space-11);
+  }
+
+  .case-study__section-h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-5);
+  }
+
+  .case-study__section-num {
+    color: var(--accent);
+  }
+
+  .case-study__article section p {
+    margin-top: var(--space-6);
+    font-size: 17px;
+    line-height: 1.72;
+    max-width: 680px;
+  }
+
+  .case-study__article section :global(.diagram-frame) {
+    margin-top: var(--space-9);
+  }
+
+  .case-study__diagram-note {
+    margin-top: var(--space-3);
+    color: var(--meta);
+  }
+
+  .case-study__footer {
+    padding-bottom: var(--space-13);
+  }
+
+  .case-study__footer-row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--space-8);
+  }
+
+  .case-study__article :global(.diagram-vertical) {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .case-study {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .case-study__article :global(.diagram-horizontal) {
+      display: none;
+    }
+
+    .case-study__article :global(.diagram-vertical) {
+      display: block;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .case-study__title {
+      font-size: 27px;
+    }
+
+    .case-study__section-h2 {
+      font-size: 27px;
+    }
+
+    .case-study__footer-row {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+  }
+</style>
