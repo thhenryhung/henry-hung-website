@@ -27,7 +27,7 @@ bandMetrics:
     caption: "User interviews"
   - metric: "1M+"
     caption: "Projected users"
-architectureNote: "[Replace with the real architecture — or a redacted product screen, if the client permits one]"
+architectureNote: "Recreated illustration — not the shipped product; anonymized for confidentiality."
 pullQuote: "[The line from one of the interviews that changed how you thought about the problem.]"
 pullQuoteCite: "[Who said it — role, not name]"
 decisions:
