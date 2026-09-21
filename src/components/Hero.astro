@@ -11,12 +11,11 @@ import PortraitFigure from './PortraitFigure.astro';
       I enjoy understanding how <span class="accent">systems and people</span> work — and applying
       that insight to build products that solve real problems.
     </h1>
-    <p class="hero__lead">
-      Concept to launch on 0-to-1 AI products and enterprise platform modernization. Four years
-      at McKinsey in Hong Kong and Boston, most recently Engagement Manager leading product
-      development and management work; CS Masters at UPenn, now an MBA Candidate at Harvard
-      Business School.
-    </p>
+    <ul class="hero__lead">
+      <li>Concept to launch on 0-to-1 AI products and enterprise platform modernization.</li>
+      <li>Four years at McKinsey in Hong Kong and Boston, most recently Engagement Manager leading product development and management work.</li>
+      <li>CS Masters at UPenn, now an MBA Candidate at Harvard Business School.</li>
+    </ul>
   </div>
 </section>
 
@@ -47,11 +46,31 @@ import PortraitFigure from './PortraitFigure.astro';
   }
 
   .hero__lead {
-    margin-top: var(--space-9);
-    font-size: 19px;
-    line-height: 1.6;
-    color: var(--text-soft);
+    margin: var(--space-9) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
     max-width: 640px;
+  }
+
+  .hero__lead li {
+    position: relative;
+    padding-left: var(--space-8);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+
+  .hero__lead li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 12px;
+    height: 1px;
+    background: var(--accent);
   }
 
   @media (max-width: 768px) {
