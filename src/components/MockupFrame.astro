@@ -16,6 +16,16 @@ const { label } = Astro.props;
     aspect-ratio: 640 / 380;
     background: var(--panel);
     border: 1px solid var(--rule);
+    transition: border-color 0.25s ease;
+  }
+
+  .mockup-frame:hover {
+    border-color: var(--ink);
+  }
+
+  .mockup-frame:hover :global([stroke="var(--diagram-line)"]) {
+    stroke: var(--ink);
+    transition: stroke 0.25s ease;
   }
 
   .mockup-frame :global(svg) {

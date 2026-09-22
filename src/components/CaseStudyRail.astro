@@ -26,13 +26,42 @@ const { facts, metric, metricCaption } = Astro.props;
     <MetricBlock metric={metric} caption={metricCaption} variant="rail" />
   </div>
 
-  <nav class="case-rail__nav mono" aria-label="Case study sections">
+  <nav class="case-rail__nav mono" id="case-rail-nav" aria-label="Case study sections">
     <a href="#problem">01 — The problem</a>
     <a href="#built">02 — What I built</a>
     <a href="#decisions">03 — Key decisions</a>
     <a href="#outcome">04 — Outcome</a>
   </nav>
 </aside>
+
+<script>
+  (function () {
+    const nav = document.getElementById('case-rail-nav');
+    if (!nav) return;
+
+    const links = Array.from(nav.querySelectorAll('a'));
+    const sections = links
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter((el) => el);
+    if (!sections.length) return;
+
+    const setActive = (id) => {
+      links.forEach((link) => {
+        link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px' }
+    );
+    sections.forEach((section) => observer.observe(section));
+  })();
+</script>
 
 <style>
   .case-rail {
@@ -62,10 +91,19 @@ const { facts, metric, metricCaption } = Astro.props;
 
   .case-rail__nav a {
     color: var(--text-soft);
+    border-left: 2px solid transparent;
+    padding-left: var(--space-3);
+    margin-left: calc(-1 * var(--space-3) - 2px);
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
   .case-rail__nav a:hover {
     color: var(--accent);
+  }
+
+  .case-rail__nav a.is-active {
+    color: var(--accent);
+    border-left-color: var(--accent);
   }
 
   @media (max-width: 768px) {

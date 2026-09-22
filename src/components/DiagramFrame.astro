@@ -18,6 +18,17 @@ const { label } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: border-color 0.25s ease;
+  }
+
+  .diagram-frame:hover {
+    border-color: var(--ink);
+  }
+
+  .diagram-frame:hover :global(rect[stroke="var(--diagram-line)"]),
+  .diagram-frame:hover :global(rect[stroke="var(--diagram-faint)"]) {
+    stroke: var(--ink);
+    transition: stroke 0.25s ease;
   }
 
   .diagram-frame :global(svg) {

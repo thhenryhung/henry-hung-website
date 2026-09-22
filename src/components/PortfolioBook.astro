@@ -51,6 +51,8 @@ const { projects } = Astro.props;
               diagramLabels={project.data.diagramLabels}
               tag={project.data.tag}
             />
+            <div class="book-page__zone book-page__zone--prev" aria-hidden="true">‹</div>
+            <div class="book-page__zone book-page__zone--next" aria-hidden="true">›</div>
           </div>
           <div class="book-page__face book-page__face--back"></div>
         </div>
@@ -100,6 +102,8 @@ const { projects } = Astro.props;
         front.querySelectorAll('a, button').forEach((el) => {
           el.tabIndex = isCurrent ? 0 : -1;
         });
+        front.classList.toggle('no-prev', current === 0);
+        front.classList.toggle('no-next', current === total - 1);
       });
 
       prevBtn.disabled = current === 0;
@@ -198,6 +202,39 @@ const { projects } = Astro.props;
     background: var(--paper);
     border: 1px solid var(--rule);
     overflow: hidden;
+  }
+
+  .book-page__zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 28px;
+    transition: opacity 0.2s ease;
+  }
+
+  .book-page__zone--prev {
+    left: 0;
+  }
+
+  .book-page__zone--next {
+    right: 0;
+  }
+
+  .book-page__face--front:hover .book-page__zone {
+    opacity: 0.7;
+  }
+
+  .book-page__face--front.no-prev .book-page__zone--prev,
+  .book-page__face--front.no-next .book-page__zone--next {
+    display: none;
   }
 
   .book-page__face--back {
