@@ -92,7 +92,7 @@ const { projects } = Astro.props;
       pages.forEach((page, i) => {
         const turned = i < current;
         page.classList.toggle('is-turned', turned);
-        page.style.zIndex = turned ? String(i) : String(total - i);
+        page.style.zIndex = turned ? String(i - total) : String(total - i);
 
         const isCurrent = i === current;
         const front = page.querySelector('.book-page__face--front');
