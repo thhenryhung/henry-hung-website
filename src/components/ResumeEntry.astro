@@ -1,6 +1,6 @@
 ---
 interface Props {
-  role: string;
+  role: string | string[];
   org: string;
   location: string;
   dateRange: string;
@@ -13,7 +13,9 @@ const { role, org, location, dateRange, intro, bullets } = Astro.props;
 <div class="resume-entry">
   <div class="resume-entry__head">
     <div>
-      <h3 class="resume-entry__role">{role}</h3>
+      <h3 class="resume-entry__role">
+        {Array.isArray(role) ? role.map((line) => <span>{line}</span>) : role}
+      </h3>
       <p class="mono resume-entry__org">{org} — {location}</p>
     </div>
     <p class="mono resume-entry__dates">{dateRange}</p>
@@ -42,6 +44,10 @@ const { role, org, location, dateRange, intro, bullets } = Astro.props;
   .resume-entry__role {
     font-size: 23px;
     line-height: 1.3;
+  }
+
+  .resume-entry__role span {
+    display: block;
   }
 
   .resume-entry__org {

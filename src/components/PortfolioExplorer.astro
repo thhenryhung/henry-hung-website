@@ -1,4 +1,6 @@
 ---
+import RequirementsVisuals from './RequirementsVisuals.astro';
+
 interface Project {
   id: string;
   data: {
@@ -57,8 +59,8 @@ const { projects } = Astro.props;
       >
         <div class="portfolio-explorer__feature">
           <div class="portfolio-explorer__copy">
-            <p class="eyebrow">{project.data.descriptor}</p>
             <h3>{project.data.title}</h3>
+            <p class="eyebrow portfolio-explorer__descriptor">{project.data.descriptor}</p>
 
             <div class="portfolio-explorer__fields">
               <div>
@@ -90,7 +92,12 @@ const { projects } = Astro.props;
           </div>
 
           <div class="portfolio-explorer__visual">
-            {project.data.screenshot ? (
+            {project.id === 'agentic-requirements' ? (
+              <>
+                <RequirementsVisuals compact />
+                <p class="mono portfolio-explorer__screen-note">Sanitized screen example to protect client confidentiality</p>
+              </>
+            ) : project.data.screenshot ? (
               <>
                 <div class:list={["portfolio-explorer__screen", `portfolio-explorer__screen--${project.id}`]} role="img" aria-label={project.data.screenshotAlt ?? `Product view for ${project.data.title}`}>
                   <img src={project.data.screenshot} alt="" />
@@ -205,10 +212,14 @@ const { projects } = Astro.props;
   }
 
   .portfolio-explorer__copy h3 {
-    margin-top: var(--space-4);
     font-size: 38px;
     line-height: 1.15;
     max-width: 620px;
+  }
+
+  .portfolio-explorer__descriptor {
+    max-width: 620px;
+    margin-top: var(--space-4);
   }
 
   .portfolio-explorer__fields {

@@ -37,11 +37,14 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 ---
 
 <BaseLayout title={`${p.title} — Henry Hung`} description={p.descriptor}>
-  <Masthead showSectionNav={false} />
+  <Masthead />
 
   <div class="container case-study">
     <article class="case-study__article">
-      <p class="eyebrow">Case study — {p.order}</p>
+      <nav class="case-study__entry-nav mono" aria-label="Case study navigation">
+        <a href="/#portfolio">← Back to portfolio</a>
+        <span>Case study — {p.order}</span>
+      </nav>
       <h1 class="case-study__title">{p.title}</h1>
       <p class="case-study__standfirst">{p.standfirst}</p>
 
@@ -182,11 +185,32 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
     margin: 0 auto;
   }
 
+  .case-study__entry-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    color: var(--meta);
+  }
+
+  .case-study__entry-nav a {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    color: var(--accent);
+  }
+
+  .case-study__entry-nav a:hover {
+    color: var(--accent-hover);
+  }
+
   .case-study__title {
     font-size: 44px;
     line-height: 1.14;
     letter-spacing: -0.012em;
-    margin-top: var(--space-3);
+    margin-top: var(--space-5);
   }
 
   .case-study__standfirst {
@@ -278,6 +302,12 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
   }
 
   @media (max-width: 768px) {
+    .case-study__entry-nav {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
     .case-study__article :global(.diagram-horizontal) {
       display: none;
     }

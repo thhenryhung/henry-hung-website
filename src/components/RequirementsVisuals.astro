@@ -1,9 +1,18 @@
-<div class="requirements-visuals">
-  <div
-    class="requirements-map"
-    role="img"
-    aria-label="Requirements workflow: legacy documents and comparable implementation patterns feed a retrieval and gap-detection agent, which produces cited requirements for product-owner review"
-  >
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<div class:list={["requirements-visuals", { "requirements-visuals--compact": compact }]}>
+  {!compact && (
+    <div
+      class="requirements-map"
+      role="img"
+      aria-label="Requirements workflow: legacy documents and comparable implementation patterns feed a retrieval and gap-detection agent, which produces cited requirements for product-owner review"
+    >
     <div class="requirements-map__header">
       <div>
         <p class="mono requirements-visuals__kicker">Product architecture</p>
@@ -62,103 +71,125 @@
       <span><i class="requirements-map__dot requirements-map__dot--suggestion"></i> AI suggestion—clearly labeled</span>
       <span><i class="requirements-map__dot requirements-map__dot--human"></i> Human decision</span>
     </div>
-  </div>
-
-  <div
-    class="requirements-app"
-    role="img"
-    aria-label="Sanitized requirements product showing a source-grounded epic, citations, a documentation gap and product-owner review controls"
-  >
-    <div class="requirements-app__topbar">
-      <div class="requirements-app__brand">
-        <span class="requirements-app__mark" aria-hidden="true">R</span>
-        <strong>Requirements Studio</strong>
-      </div>
-      <div class="requirements-app__project mono">Platform modernization / Servicing</div>
-      <div class="requirements-app__user" aria-hidden="true">HH</div>
     </div>
+  )}
 
-    <div class="requirements-app__body">
-      <aside class="requirements-app__sidebar">
-        <p class="mono requirements-visuals__kicker">Workspace</p>
-        <div class="requirements-app__nav">
-          <span>Overview</span>
-          <span>Source library <i>48</i></span>
-          <span class="requirements-app__nav-active">Epics <i>12</i></span>
-          <span>Review queue <i>3</i></span>
-        </div>
-        <div class="requirements-app__source-health">
-          <span class="mono">Source health</span>
-          <strong>42 cited · 6 gaps</strong>
-          <div><i></i></div>
-        </div>
-      </aside>
-
-      <main class="requirements-app__main">
-        <div class="requirements-app__breadcrumbs mono">Epics / EPC-0142</div>
-        <div class="requirements-app__title-row">
-          <div>
-            <span class="requirements-app__status">Draft in review</span>
-            <h3>Customer communication preferences</h3>
+  <div class="requirements-device">
+    <div class="requirements-device__lid">
+      <span class="requirements-device__camera" aria-hidden="true"><i></i></span>
+      <div class="requirements-device__screen">
+        <div class="requirements-browser" aria-hidden="true">
+          <div class="requirements-browser__traffic"><i></i><i></i><i></i></div>
+          <div class="requirements-browser__address">
+            <span class="requirements-browser__lock">◆</span>
+            <span>workspace.internal / requirements / EPC-0142</span>
           </div>
-          <div class="requirements-app__title-meta mono">3 sources · Draft 03</div>
+          <div class="requirements-browser__tools"><i></i><i></i><i></i></div>
         </div>
 
-        <div class="requirements-app__content">
-          <section class="requirements-app__document">
-            <div class="requirements-app__section-head">
-              <p class="mono requirements-visuals__kicker">Generated epic</p>
-              <span class="requirements-app__confidence">92% grounded</span>
+        <div
+          class="requirements-app"
+          role="img"
+          aria-label="Sanitized requirements product shown on a laptop screen, with a source-grounded epic, citations, a documentation gap and product-owner review controls"
+        >
+          <div class="requirements-app__topbar">
+            <div class="requirements-app__brand">
+              <span class="requirements-app__mark" aria-hidden="true">R</span>
+              <strong>Requirements Studio</strong>
             </div>
-            <p class="requirements-app__story">
-              As a servicing specialist, I need to record and apply a customer's channel preferences across future outreach.
-            </p>
+            <div class="requirements-app__project mono">Platform modernization / Servicing</div>
+            <div class="requirements-app__user" aria-hidden="true">HH</div>
+          </div>
 
-            <div class="requirements-app__criteria">
-              <p class="mono requirements-visuals__kicker">Acceptance criteria</p>
-              <div><i>1</i><span>Store a preferred channel and effective date.</span><b>Source 04</b></div>
-              <div><i>2</i><span>Apply the preference to future servicing messages.</span><b>Source 11</b></div>
-              <div><i>3</i><span>Preserve an auditable change history.</span><b>Source 18</b></div>
-            </div>
-
-            <div class="requirements-app__gap">
-              <div class="requirements-app__gap-icon" aria-hidden="true">!</div>
-              <div>
-                <p class="mono">Documentation gap</p>
-                <strong>Conflict handling is not defined in the legacy source.</strong>
-                <span>A comparable implementation pattern is available for review.</span>
+          <div class="requirements-app__body">
+            <aside class="requirements-app__sidebar">
+              <p class="mono requirements-visuals__kicker">Workspace</p>
+              <div class="requirements-app__nav">
+                <span>Overview</span>
+                <span>Source library <i>48</i></span>
+                <span class="requirements-app__nav-active">Epics <i>12</i></span>
+                <span>Review queue <i>3</i></span>
               </div>
-              <span class="requirements-app__review-pill">Review suggestion</span>
-            </div>
-          </section>
+              <div class="requirements-app__source-health">
+                <span class="mono">Source health</span>
+                <strong>42 cited · 6 gaps</strong>
+                <div><i></i></div>
+              </div>
+            </aside>
 
-          <aside class="requirements-app__sources">
-            <p class="mono requirements-visuals__kicker">Evidence</p>
-            <div class="requirements-app__source-card requirements-app__source-card--active">
-              <span class="mono">Source 04 · §3.2</span>
-              <strong>Servicing guide</strong>
-              <p>“The customer's active channel preference must be honored...”</p>
-            </div>
-            <div class="requirements-app__source-card">
-              <span class="mono">Source 11 · §7.1</span>
-              <strong>Communication rules</strong>
-            </div>
-            <div class="requirements-app__source-card">
-              <span class="mono">Source 18 · §2.4</span>
-              <strong>Audit requirements</strong>
-            </div>
-          </aside>
-        </div>
+            <main class="requirements-app__main">
+              <div class="requirements-app__breadcrumbs mono">Epics / EPC-0142</div>
+              <div class="requirements-app__title-row">
+                <div>
+                  <span class="requirements-app__status">Draft in review</span>
+                  <h3>Customer communication preferences</h3>
+                </div>
+                <div class="requirements-app__title-meta mono">3 sources · Draft 03</div>
+              </div>
 
-        <div class="requirements-app__actions">
-          <span class="mono">Owner decision required</span>
-          <div>
-            <span class="requirements-app__button">Request revision</span>
-            <span class="requirements-app__button requirements-app__button--primary">Approve epic</span>
+              <div class="requirements-app__content">
+                <section class="requirements-app__document">
+                  <div class="requirements-app__section-head">
+                    <p class="mono requirements-visuals__kicker">Generated epic</p>
+                    <span class="requirements-app__confidence">92% grounded</span>
+                  </div>
+                  <p class="requirements-app__story">
+                    As a servicing specialist, I need to record and apply a customer's channel preferences across future outreach.
+                  </p>
+
+                  <div class="requirements-app__criteria">
+                    <p class="mono requirements-visuals__kicker">Acceptance criteria</p>
+                    <div><i>1</i><span>Store a preferred channel and effective date.</span><b>Source 04</b></div>
+                    <div><i>2</i><span>Apply the preference to future servicing messages.</span><b>Source 11</b></div>
+                    <div><i>3</i><span>Preserve an auditable change history.</span><b>Source 18</b></div>
+                  </div>
+
+                  <div class="requirements-app__gap">
+                    <div class="requirements-app__gap-icon" aria-hidden="true">!</div>
+                    <div>
+                      <p class="mono">Documentation gap</p>
+                      <strong>Conflict handling is not defined in the legacy source.</strong>
+                      <span>A comparable implementation pattern is available for review.</span>
+                    </div>
+                    <span class="requirements-app__review-pill">Review suggestion</span>
+                  </div>
+                </section>
+
+                <aside class="requirements-app__sources">
+                  <p class="mono requirements-visuals__kicker">Evidence</p>
+                  <div class="requirements-app__source-card requirements-app__source-card--active">
+                    <span class="mono">Source 04 · §3.2</span>
+                    <strong>Servicing guide</strong>
+                    <p>“The customer's active channel preference must be honored...”</p>
+                  </div>
+                  <div class="requirements-app__source-card">
+                    <span class="mono">Source 11 · §7.1</span>
+                    <strong>Communication rules</strong>
+                  </div>
+                  <div class="requirements-app__source-card">
+                    <span class="mono">Source 18 · §2.4</span>
+                    <strong>Audit requirements</strong>
+                  </div>
+                </aside>
+              </div>
+
+              <div class="requirements-app__actions">
+                <div class="requirements-app__action-status">
+                  <span class="mono">Owner decision required</span>
+                  <small><i></i> Autosaved just now</small>
+                </div>
+                <div>
+                  <span class="requirements-app__button">Request revision</span>
+                  <span class="requirements-app__button requirements-app__button--primary">Approve epic</span>
+                </div>
+              </div>
+            </main>
           </div>
         </div>
-      </main>
+      </div>
     </div>
+    <div class="requirements-device__base" aria-hidden="true"><span></span></div>
+    <div class="requirements-device__shadow" aria-hidden="true"></div>
   </div>
 </div>
 
@@ -167,6 +198,233 @@
     display: grid;
     gap: var(--space-7);
     margin-top: var(--space-9);
+  }
+
+  .requirements-visuals--compact {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    place-items: center;
+    margin-top: 0;
+    padding: var(--space-5);
+    overflow: hidden;
+    background: var(--panel-strong);
+  }
+
+  .requirements-visuals--compact .requirements-device {
+    width: 100%;
+    max-width: 286px;
+    padding-bottom: 23px;
+  }
+
+  .requirements-visuals--compact .requirements-device__lid {
+    padding: 7px 7px 9px;
+    border-radius: 9px 9px 3px 3px;
+  }
+
+  .requirements-visuals--compact .requirements-device__camera {
+    top: 2px;
+    width: 24px;
+    height: 4px;
+  }
+
+  .requirements-visuals--compact .requirements-device__base {
+    bottom: 9px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: 17px;
+    border-radius: 1px 1px 7px 7px;
+  }
+
+  .requirements-visuals--compact .requirements-device__base span {
+    width: 54px;
+    height: 5px;
+  }
+
+  .requirements-visuals--compact .requirements-device__shadow {
+    bottom: 1px;
+    height: 12px;
+    filter: blur(8px);
+  }
+
+  .requirements-visuals--compact .requirements-browser {
+    min-height: 28px;
+    grid-template-columns: 38px minmax(0, 1fr) 22px;
+    gap: 4px;
+    padding: 0 6px;
+  }
+
+  .requirements-visuals--compact .requirements-browser__traffic {
+    gap: 4px;
+  }
+
+  .requirements-visuals--compact .requirements-browser__traffic i {
+    width: 5px;
+    height: 5px;
+  }
+
+  .requirements-visuals--compact .requirements-browser__address {
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 3px 5px;
+    font-size: 6px;
+    text-overflow: ellipsis;
+  }
+
+  .requirements-visuals--compact .requirements-browser__tools {
+    gap: 3px;
+  }
+
+  .requirements-visuals--compact .requirements-browser__tools i {
+    width: 3px;
+    height: 3px;
+  }
+
+  .requirements-visuals--compact .requirements-app__topbar {
+    min-height: 42px;
+    grid-template-columns: 1fr auto;
+    padding: 0 10px;
+  }
+
+  .requirements-visuals--compact .requirements-app__brand {
+    gap: 6px;
+    font-size: 9px;
+  }
+
+  .requirements-visuals--compact .requirements-app__mark {
+    width: 22px;
+    height: 22px;
+    font-size: 8px;
+  }
+
+  .requirements-visuals--compact .requirements-app__project,
+  .requirements-visuals--compact .requirements-app__sidebar,
+  .requirements-visuals--compact .requirements-app__sources,
+  .requirements-visuals--compact .requirements-app__title-meta,
+  .requirements-visuals--compact .requirements-app__action-status small {
+    display: none;
+  }
+
+  .requirements-visuals--compact .requirements-app__user {
+    width: 24px;
+    height: 24px;
+    font-size: 8px;
+  }
+
+  .requirements-visuals--compact .requirements-app__body,
+  .requirements-visuals--compact .requirements-app__content {
+    grid-template-columns: 1fr;
+  }
+
+  .requirements-visuals--compact .requirements-app__body {
+    min-height: 400px;
+  }
+
+  .requirements-visuals--compact .requirements-app__main {
+    padding: 12px;
+  }
+
+  .requirements-visuals--compact .requirements-app__breadcrumbs {
+    font-size: 7px;
+  }
+
+  .requirements-visuals--compact .requirements-app__title-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 9px;
+    padding-bottom: 10px;
+  }
+
+  .requirements-visuals--compact .requirements-app__title-row h3 {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .requirements-visuals--compact .requirements-app__status,
+  .requirements-visuals--compact .requirements-app__confidence {
+    min-height: 18px;
+    padding: 3px 6px;
+    font-size: 7px;
+  }
+
+  .requirements-visuals--compact .requirements-app__content {
+    margin-top: 10px;
+  }
+
+  .requirements-visuals--compact .requirements-app__document {
+    padding: 12px;
+  }
+
+  .requirements-visuals--compact .requirements-app__story {
+    margin-top: 8px;
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  .requirements-visuals--compact .requirements-app__criteria {
+    margin-top: 10px;
+    padding-top: 9px;
+  }
+
+  .requirements-visuals--compact .requirements-app__criteria > div {
+    grid-template-columns: 17px 1fr auto;
+    gap: 5px;
+    margin-top: 6px;
+    font-size: 7px;
+  }
+
+  .requirements-visuals--compact .requirements-app__criteria i {
+    width: 15px;
+    height: 15px;
+    font-size: 7px;
+  }
+
+  .requirements-visuals--compact .requirements-app__criteria b {
+    padding: 2px 4px;
+    font-size: 6px;
+  }
+
+  .requirements-visuals--compact .requirements-app__gap {
+    grid-template-columns: 22px 1fr;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 8px;
+  }
+
+  .requirements-visuals--compact .requirements-app__gap-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .requirements-visuals--compact .requirements-app__gap strong {
+    font-size: 7px;
+  }
+
+  .requirements-visuals--compact .requirements-app__gap span:not(.requirements-app__review-pill) {
+    font-size: 6px;
+  }
+
+  .requirements-visuals--compact .requirements-app__review-pill {
+    grid-column: 2;
+    justify-self: start;
+    padding: 3px 5px;
+    font-size: 6px;
+  }
+
+  .requirements-visuals--compact .requirements-app__actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 9px;
+    padding-top: 9px;
+  }
+
+  .requirements-visuals--compact .requirements-app__button {
+    min-height: 25px;
+    padding: 4px 7px;
+    font-size: 7px;
   }
 
   .requirements-visuals__kicker {
@@ -179,6 +437,180 @@
     border: 1px solid var(--rule);
     background: #f6f9fc;
     box-shadow: 0 18px 50px rgba(18, 32, 54, 0.07);
+  }
+
+  .requirements-device {
+    position: relative;
+    isolation: isolate;
+    padding-bottom: 38px;
+  }
+
+  .requirements-device__lid {
+    position: relative;
+    z-index: 2;
+    padding: 12px 12px 14px;
+    border: 1px solid #0e1620;
+    border-radius: 15px 15px 5px 5px;
+    background: linear-gradient(145deg, #303945 0%, #121a24 48%, #27313c 100%);
+    box-shadow:
+      0 28px 60px rgba(15, 29, 48, 0.2),
+      inset 0 1px rgba(255, 255, 255, 0.2),
+      inset 0 -1px rgba(0, 0, 0, 0.65);
+  }
+
+  .requirements-device__camera {
+    position: absolute;
+    z-index: 4;
+    top: 4px;
+    left: 50%;
+    width: 34px;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: #0a1017;
+  }
+
+  .requirements-device__camera i {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #304964;
+    box-shadow: 0 0 3px #5e84ab;
+  }
+
+  .requirements-device__screen {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #3e4a58;
+    border-radius: 5px 5px 2px 2px;
+    background: #f6f9fc;
+  }
+
+  .requirements-device__screen::after {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    content: '';
+    pointer-events: none;
+    background: linear-gradient(118deg, rgba(255, 255, 255, 0.1), transparent 26%, transparent 76%, rgba(255, 255, 255, 0.05));
+    mix-blend-mode: screen;
+  }
+
+  .requirements-device__base {
+    position: absolute;
+    z-index: 1;
+    bottom: 15px;
+    left: -23px;
+    width: calc(100% + 46px);
+    height: 28px;
+    border: 1px solid #9ea7b0;
+    border-radius: 2px 2px 12px 12px;
+    background: linear-gradient(180deg, #e8ebed 0%, #b8bec4 42%, #777f87 100%);
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.95),
+      inset 0 -2px rgba(54, 62, 70, 0.35),
+      0 8px 15px rgba(12, 25, 42, 0.2);
+  }
+
+  .requirements-device__base span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 82px;
+    height: 8px;
+    transform: translateX(-50%);
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(180deg, #9aa2a9, #d7dadd);
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.18);
+  }
+
+  .requirements-device__shadow {
+    position: absolute;
+    z-index: 0;
+    right: 4%;
+    bottom: 0;
+    left: 4%;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(15, 29, 48, 0.24);
+    filter: blur(13px);
+  }
+
+  .requirements-browser {
+    min-height: 36px;
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) 70px;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 12px;
+    border-bottom: 1px solid #d7dee6;
+    background: linear-gradient(180deg, #fbfcfd, #eef1f4);
+  }
+
+  .requirements-browser__traffic,
+  .requirements-browser__tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .requirements-browser__traffic i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #c2c9d0;
+  }
+
+  .requirements-browser__traffic i:first-child {
+    background: #e7877d;
+  }
+
+  .requirements-browser__traffic i:nth-child(2) {
+    background: #ddb765;
+  }
+
+  .requirements-browser__traffic i:last-child {
+    background: #7db58c;
+  }
+
+  .requirements-browser__address {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 5px 12px;
+    border: 1px solid #d9e0e7;
+    border-radius: 7px;
+    background: white;
+    color: #738297;
+    font: 8px var(--font-meta);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .requirements-browser__lock {
+    color: #4d8a62;
+    font-size: 6px;
+  }
+
+  .requirements-browser__tools {
+    justify-content: flex-end;
+  }
+
+  .requirements-browser__tools i {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #8794a3;
+  }
+
+  .requirements-device .requirements-app {
+    border: 0;
+    box-shadow: none;
   }
 
   .requirements-map {
@@ -702,6 +1134,28 @@
     gap: 8px;
   }
 
+  .requirements-app__action-status {
+    align-items: center;
+    flex-wrap: wrap;
+    color: #718196;
+  }
+
+  .requirements-app__action-status small {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  .requirements-app__action-status small i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64a177;
+    box-shadow: 0 0 0 2px #e0eee4;
+  }
+
   .requirements-app__button {
     display: inline-flex;
     min-height: 34px;
@@ -720,6 +1174,34 @@
   }
 
   @media (max-width: 768px) {
+    .requirements-device {
+      padding-bottom: 28px;
+    }
+
+    .requirements-device__lid {
+      padding: 9px 9px 11px;
+      border-radius: 11px 11px 4px 4px;
+    }
+
+    .requirements-device__camera {
+      top: 3px;
+      width: 26px;
+      height: 4px;
+    }
+
+    .requirements-device__base {
+      bottom: 11px;
+      left: -12px;
+      width: calc(100% + 24px);
+      height: 21px;
+      border-radius: 2px 2px 9px 9px;
+    }
+
+    .requirements-device__base span {
+      width: 64px;
+      height: 6px;
+    }
+
     .requirements-map,
     .requirements-app__main {
       padding: var(--space-5);
@@ -773,6 +1255,45 @@
   }
 
   @media (max-width: 480px) {
+    .requirements-device {
+      padding-bottom: 21px;
+    }
+
+    .requirements-device__lid {
+      padding: 6px 6px 8px;
+      border-radius: 8px 8px 3px 3px;
+    }
+
+    .requirements-device__camera {
+      display: none;
+    }
+
+    .requirements-device__base {
+      bottom: 8px;
+      left: -6px;
+      width: calc(100% + 12px);
+      height: 16px;
+      border-radius: 1px 1px 7px 7px;
+    }
+
+    .requirements-browser {
+      min-height: 30px;
+      grid-template-columns: 44px minmax(0, 1fr) 30px;
+      gap: 5px;
+      padding: 0 8px;
+    }
+
+    .requirements-browser__address {
+      justify-content: flex-start;
+      overflow: hidden;
+      padding: 4px 7px;
+      text-overflow: ellipsis;
+    }
+
+    .requirements-browser__tools i:not(:last-child) {
+      display: none;
+    }
+
     .requirements-map__badge,
     .requirements-app__title-meta {
       display: none;

@@ -3,6 +3,9 @@ interface Props {
   showSectionNav?: boolean;
 }
 const { showSectionNav = true } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isPortfolio = pathname === '/';
+const isResume = pathname === '/resume';
 ---
 
 <header class="masthead">
@@ -12,8 +15,8 @@ const { showSectionNav = true } = Astro.props;
     <div class="masthead__right">
       {showSectionNav && (
         <nav class="masthead__nav mono" aria-label="Primary">
-          <a href="/#portfolio">Portfolio</a>
-          <a href="/resume">Resume</a>
+          <a href="/#portfolio" aria-current={isPortfolio ? 'page' : undefined}>Portfolio</a>
+          <a href="/resume" aria-current={isResume ? 'page' : undefined}>Resume</a>
           <a href="/#contact" class="masthead__cta">Let's talk →</a>
         </nav>
       )}
@@ -32,8 +35,8 @@ const { showSectionNav = true } = Astro.props;
   </div>
 
   <nav id="mobile-nav" class="mobile-nav mono" aria-label="Mobile" hidden>
-    <a href="/#portfolio">Portfolio</a>
-    <a href="/resume">Resume</a>
+    <a href="/#portfolio" aria-current={isPortfolio ? 'page' : undefined}>Portfolio</a>
+    <a href="/resume" aria-current={isResume ? 'page' : undefined}>Resume</a>
     <a href="/#contact" class="masthead__cta masthead__cta--mobile">Let's talk →</a>
   </nav>
 </header>
@@ -41,10 +44,27 @@ const { showSectionNav = true } = Astro.props;
 <script>
   const toggle = document.getElementById('menu-toggle');
   const nav = document.getElementById('mobile-nav');
+
+  const setMenuOpen = (open) => {
+    if (!toggle || !nav) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    const icon = toggle.querySelector('[aria-hidden="true"]');
+    if (icon) icon.textContent = open ? '×' : '☰';
+    nav.hidden = !open;
+  };
+
   toggle?.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    if (nav) nav.hidden = expanded;
+    setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      toggle.focus();
+    }
   });
 </script>
 
@@ -89,6 +109,14 @@ const { showSectionNav = true } = Astro.props;
 
   .masthead__nav a:hover {
     color: var(--accent);
+  }
+
+  .masthead__nav a[aria-current='page'],
+  .mobile-nav a[aria-current='page'] {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
   }
 
   .masthead__cta {
