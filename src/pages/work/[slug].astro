@@ -6,9 +6,8 @@ import CaseStudyRail from '../../components/CaseStudyRail.astro';
 import MetricBand from '../../components/MetricBand.astro';
 import PullQuote from '../../components/PullQuote.astro';
 import DiagramFrame from '../../components/DiagramFrame.astro';
+import MockupFrame from '../../components/MockupFrame.astro';
 import DecisionBlock from '../../components/DecisionBlock.astro';
-import AssistantMockup from '../../components/mockups/AssistantMockup.astro';
-import CopilotMockup from '../../components/mockups/CopilotMockup.astro';
 import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
 
 export async function getStaticPaths() {
@@ -70,8 +69,11 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
         <h2 class="case-study__section-h2"><span class="mono case-study__section-num">02</span> What I built</h2>
         <p>{builtText}</p>
 
-        {project.id === 'insurance-copilot' && <CopilotMockup />}
-        {project.id === 'cs-agent' && <AssistantMockup />}
+        {p.screenshot && (
+          <MockupFrame label={p.screenshotAlt ?? `Product mockup for ${p.title}`}>
+            <img src={p.screenshot} alt="" />
+          </MockupFrame>
+        )}
 
         {project.id === 'cs-agent' && (
         <DiagramFrame label={`Architecture diagram for ${p.title}`}>

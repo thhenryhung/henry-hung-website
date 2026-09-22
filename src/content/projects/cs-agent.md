@@ -15,10 +15,8 @@ team: "10+ engineers and designers"
 scope: "Concept to full working prototype"
 research: "20+ user interviews"
 hasCaseStudy: true
-diagramLabels:
-  - "QUESTION"
-  - "ROUTER"
-  - "SUB-AGENTS"
+screenshot: "/images/assistant-mockup.webp"
+screenshotAlt: "Generic mockup of the assistant's mobile chat view: a question about coverage, an answer card with the coverage amount, waiting period and benefit type, and an option to explain exclusions"
 standfirst: "A large consumer business had a chatbot that customers had learned to skip. I led the product that replaced it — from concept to a full working prototype — and the work began with twenty conversations rather than a roadmap."
 bandMetrics:
   - metric: "+10%"

@@ -14,9 +14,8 @@ role: "Sole product manager"
 team: "10+ engineers and designers"
 scope: "Concept to full working prototype"
 hasCaseStudy: true
-diagramLabels:
-  - "OPEN CONVERSATIONS"
-  - "DRAFTED REPLY"
+screenshot: "/images/copilot-mockup.png"
+screenshotAlt: "Generic mockup of the co-pilot's customer conversation view: an AI-drafted message with a confidence score and sources, a plan-progress checklist, and Save draft / Approve and send actions"
 standfirst: "Frontline agents were juggling dozens of open customer relationships at once, each with its own history, paperwork and next step. I built the co-pilot that keeps track of all of it — and drafts what to say next."
 bandMetrics:
   - metric: "+30%"
