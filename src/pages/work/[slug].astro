@@ -242,7 +242,42 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 
   @media (max-width: 1024px) {
     .case-study {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case-study__article {
+      display: contents;
+    }
+
+    .case-study__article > .eyebrow {
+      order: 1;
+    }
+
+    .case-study__title {
+      order: 2;
+    }
+
+    .case-study__standfirst {
+      order: 3;
+    }
+
+    :global(.case-rail) {
+      order: 4;
+      margin-top: var(--space-9);
+    }
+
+    .case-study__article :global(.metric-band) {
+      order: 5;
+    }
+
+    .case-study__article > :global(section) {
+      order: 6;
+    }
+
+    .case-study__article > :global(.confidentiality-note) {
+      order: 7;
     }
   }
 

@@ -17,14 +17,17 @@ const { facts, metric, metricCaption } = Astro.props;
 <aside class="case-rail">
   <a href="/#portfolio" class="mono case-rail__back">← Back to portfolio</a>
 
-  <div class="case-rail__facts">
-    <p class="mono case-rail__label">At a glance</p>
-    <FactList facts={facts} />
-  </div>
+  <details class="case-rail__glance" open>
+    <summary class="mono">At a glance <span aria-hidden="true">+</span></summary>
+    <div class="case-rail__facts">
+      <p class="mono case-rail__label">At a glance</p>
+      <FactList facts={facts} />
+    </div>
 
-  <div class="case-rail__metric">
-    <MetricBlock metric={metric} caption={metricCaption} variant="rail" />
-  </div>
+    <div class="case-rail__metric">
+      <MetricBlock metric={metric} caption={metricCaption} variant="rail" />
+    </div>
+  </details>
 
   <nav class="case-rail__nav mono" id="case-rail-nav" aria-label="Case study sections">
     <a href="#problem">01 — The problem</a>
@@ -36,6 +39,10 @@ const { facts, metric, metricCaption } = Astro.props;
 
 <script>
   (function () {
+    const glance = document.querySelector('.case-rail__glance');
+    const mobile = window.matchMedia('(max-width: 1024px)');
+    if (glance && mobile.matches) glance.removeAttribute('open');
+
     const nav = document.getElementById('case-rail-nav');
     if (!nav) return;
 
@@ -81,6 +88,14 @@ const { facts, metric, metricCaption } = Astro.props;
     margin-bottom: var(--space-3);
   }
 
+  .case-rail__glance summary {
+    display: none;
+  }
+
+  .case-rail__metric {
+    margin-top: var(--space-11);
+  }
+
   .case-rail__nav {
     display: flex;
     flex-direction: column;
@@ -106,20 +121,68 @@ const { facts, metric, metricCaption } = Astro.props;
     border-left-color: var(--accent);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .case-rail {
       position: static;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: var(--space-8);
+      padding: var(--space-6) 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
     }
 
     .case-rail__back {
-      grid-column: 1 / -1;
+      order: -1;
+    }
+
+    .case-rail__glance summary {
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--accent);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .case-rail__glance summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .case-rail__glance[open] summary span {
+      transform: rotate(45deg);
+    }
+
+    .case-rail__facts {
+      margin-top: var(--space-5);
+    }
+
+    .case-rail__label {
+      display: none;
     }
 
     .case-rail__nav {
-      grid-column: 1 / -1;
+      flex-direction: row;
+      gap: var(--space-6);
+      overflow-x: auto;
+      padding-top: var(--space-5);
+      white-space: nowrap;
+    }
+
+    .case-rail__nav a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-left: 0;
+      border-bottom: 2px solid transparent;
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    .case-rail__nav a.is-active {
+      border-left-color: transparent;
+      border-bottom-color: var(--accent);
     }
   }
 </style>

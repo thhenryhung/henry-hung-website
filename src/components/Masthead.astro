@@ -1,6 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
-
 interface Props {
   showSectionNav?: boolean;
 }
@@ -14,13 +12,12 @@ const { showSectionNav = true } = Astro.props;
     <div class="masthead__right">
       {showSectionNav && (
         <nav class="masthead__nav mono" aria-label="Primary">
-          <a href="/#portfolio">Portfolio</a>
+          <a href="/#portfolio">Work</a>
+          <a href="/#background">Background</a>
           <a href="/resume">Resume</a>
-          <a href="/#contact" class="masthead__cta">Get in touch</a>
+          <a href="/#contact" class="masthead__cta">Let's talk →</a>
         </nav>
       )}
-
-      <ThemeToggle />
 
       <button
         class="masthead__menu-btn"
@@ -36,9 +33,10 @@ const { showSectionNav = true } = Astro.props;
   </div>
 
   <nav id="mobile-nav" class="mobile-nav mono" aria-label="Mobile" hidden>
-    <a href="/#portfolio">Portfolio</a>
+    <a href="/#portfolio">Work</a>
+    <a href="/#background">Background</a>
     <a href="/resume">Resume</a>
-    <a href="/#contact" class="masthead__cta masthead__cta--mobile">Get in touch</a>
+    <a href="/#contact" class="masthead__cta masthead__cta--mobile">Let's talk →</a>
   </nav>
 </header>
 
@@ -55,7 +53,11 @@ const { showSectionNav = true } = Astro.props;
 <style>
   .masthead {
     border-bottom: 1px solid var(--rule);
-    background: var(--paper);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 30;
   }
 
   .masthead__inner {
@@ -93,8 +95,8 @@ const { showSectionNav = true } = Astro.props;
 
   .masthead__cta {
     color: var(--paper) !important;
-    background: var(--ink);
-    padding: var(--space-2) var(--space-5);
+    background: var(--accent);
+    padding: var(--space-3) var(--space-5);
   }
 
   .masthead__cta:hover {

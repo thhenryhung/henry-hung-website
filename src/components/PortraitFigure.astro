@@ -1,7 +1,12 @@
 ---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
 
-<figure class="portrait">
+<figure class:list={["portrait", { "portrait--compact": compact }]}>
   <img
     class="portrait__image"
     src="/images/portrait.jpg"
@@ -23,6 +28,11 @@
     height: 258px;
     object-fit: cover;
     object-position: 50% 25%;
+  }
+
+  .portrait--compact .portrait__image {
+    width: 128px;
+    height: 156px;
   }
 
   @media (max-width: 768px) {

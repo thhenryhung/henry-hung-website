@@ -1,0 +1,125 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+const milestones = [
+  {
+    label: 'Now',
+    title: 'Harvard Business School',
+    detail: 'MBA Candidate',
+  },
+  {
+    label: 'Previously',
+    title: 'McKinsey & Company',
+    detail: 'Four years across Hong Kong and Boston; most recently Engagement Manager leading product development and management work.',
+  },
+  {
+    label: 'Education',
+    title: 'University of Pennsylvania',
+    detail: 'Master’s in Computer Science',
+  },
+];
+---
+
+<section class="background container" id="background">
+  <SectionHeader title="Background" descriptor="Hong Kong → Philadelphia → Boston" />
+  <div class="background__grid">
+    <div class="background__statement">
+      <p class="eyebrow">The throughline</p>
+      <h2>Technical fluency, customer curiosity and the judgment to connect them.</h2>
+    </div>
+    <ol class="background__timeline">
+      {milestones.map((milestone, index) => (
+        <li>
+          <span class="background__marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <p class="mono background__label">{milestone.label}</p>
+            <h3>{milestone.title}</h3>
+            <p>{milestone.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .background {
+    padding-top: var(--space-14);
+  }
+
+  .background__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1.2fr;
+    gap: var(--space-13);
+    padding-top: var(--space-9);
+  }
+
+  .background__statement {
+    position: sticky;
+    top: 112px;
+    align-self: start;
+  }
+
+  .background__statement h2 {
+    margin-top: var(--space-4);
+    max-width: 500px;
+    font-size: 34px;
+    line-height: 1.25;
+  }
+
+  .background__timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid var(--ink);
+  }
+
+  .background__timeline li {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: var(--space-6);
+    padding: var(--space-7) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .background__marker,
+  .background__label {
+    font-family: var(--font-meta);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .background__marker {
+    color: var(--accent);
+  }
+
+  .background__label {
+    color: var(--meta);
+  }
+
+  .background__timeline h3 {
+    margin-top: var(--space-2);
+    font-size: 24px;
+  }
+
+  .background__timeline li p:last-child {
+    margin-top: var(--space-2);
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 768px) {
+    .background__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .background__statement {
+      position: static;
+    }
+
+    .background__statement h2 {
+      font-size: 28px;
+    }
+  }
+</style>
