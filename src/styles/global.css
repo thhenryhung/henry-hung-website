@@ -5,20 +5,21 @@
 @import '@fontsource/ibm-plex-mono/400.css';
 
 :root {
-  --paper: #FAF8F3;
-  --panel: #F4F1E8;
-  --placeholder: #E8E4DA;
-  --ink: #14120E;
-  --text: #3D3830;
-  --text-soft: #4A453C;
-  --text-muted: #6B6355;
-  --meta: #6E6757;
-  --rule: #DCD6C8;
-  --accent: #1B3A6B;
-  --accent-hover: #0E2547;
+  /* Navy Blue — default theme */
+  --paper: #10203A;
+  --panel: #182B4A;
+  --placeholder: #1F3454;
+  --ink: #F1F4F9;
+  --text: #C9D3E0;
+  --text-soft: #B7C3D4;
+  --text-muted: #8C9BB3;
+  --meta: #7386A3;
+  --rule: #24365A;
+  --accent: #D9A44A;
+  --accent-hover: #EFC178;
 
-  --diagram-line: #9A9284;
-  --diagram-faint: #C7C0B0;
+  --diagram-line: #4C5F7F;
+  --diagram-faint: #2C3F5F;
 
   --font-display: 'Bodoni Moda', Didot, serif;
   --font-body: 'Newsreader', Georgia, serif;
@@ -41,6 +42,24 @@
   --space-15: 88px;
 }
 
+:root[data-theme='light'] {
+  /* Light Blue — alternate theme */
+  --paper: #E6EDF4;
+  --panel: #D9E4ED;
+  --placeholder: #CBDAE7;
+  --ink: #17222D;
+  --text: #263340;
+  --text-soft: #3D4C5B;
+  --text-muted: #56677A;
+  --meta: #56677A;
+  --rule: #C7D6E4;
+  --accent: #1B3A6B;
+  --accent-hover: #0E2547;
+
+  --diagram-line: #9AAEC2;
+  --diagram-faint: #C7D6E4;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -57,6 +76,7 @@ body {
   font-size: 17px;
   line-height: 1.68;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 h1, h2, h3 {

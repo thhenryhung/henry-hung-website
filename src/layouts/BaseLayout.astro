@@ -19,6 +19,12 @@ const { title, description = 'Henry Hung — product manager working across syst
     <meta name="description" content={description} />
     <script is:inline>
       document.documentElement.classList.replace('no-js', 'js');
+      var theme = 'dark';
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') theme = stored;
+      } catch (e) {}
+      document.documentElement.setAttribute('data-theme', theme);
     </script>
   </head>
   <body>

@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 interface Props {
   showSectionNav?: boolean;
 }
@@ -9,24 +11,28 @@ const { showSectionNav = true } = Astro.props;
   <div class="container masthead__inner">
     <a href="/" class="masthead__wordmark mono">Henry Hung</a>
 
-    {showSectionNav && (
-      <nav class="masthead__nav mono" aria-label="Primary">
-        <a href="/#portfolio">Portfolio</a>
-        <a href="/resume">Resume</a>
-        <a href="/#contact" class="masthead__cta">Get in touch</a>
-      </nav>
-    )}
+    <div class="masthead__right">
+      {showSectionNav && (
+        <nav class="masthead__nav mono" aria-label="Primary">
+          <a href="/#portfolio">Portfolio</a>
+          <a href="/resume">Resume</a>
+          <a href="/#contact" class="masthead__cta">Get in touch</a>
+        </nav>
+      )}
 
-    <button
-      class="masthead__menu-btn"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-      id="menu-toggle"
-    >
-      <span aria-hidden="true">☰</span>
-    </button>
+      <ThemeToggle />
+
+      <button
+        class="masthead__menu-btn"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        id="menu-toggle"
+      >
+        <span aria-hidden="true">☰</span>
+      </button>
+    </div>
   </div>
 
   <nav id="mobile-nav" class="mobile-nav mono" aria-label="Mobile" hidden>
@@ -63,6 +69,12 @@ const { showSectionNav = true } = Astro.props;
     font-size: 19px;
     letter-spacing: 0.06em;
     color: var(--ink);
+  }
+
+  .masthead__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
   }
 
   .masthead__nav {
