@@ -14,7 +14,7 @@ const { cells } = Astro.props;
   <div class="metric-band__row">
     {cells.map((cell) => (
       <div class="metric-band__cell">
-        <div class="metric-band__value">{cell.metric}</div>
+        <div class:list={["metric-band__value", { "metric-band__value--long": cell.metric.length > 10 }]}>{cell.metric}</div>
         <p class="metric-band__caption">{cell.caption}</p>
       </div>
     ))}
@@ -50,6 +50,12 @@ const { cells } = Astro.props;
     color: var(--accent);
   }
 
+  .metric-band__value--long {
+    font-size: 27px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
   .metric-band__caption {
     margin-top: var(--space-3);
     font-size: 15px;
@@ -68,12 +74,17 @@ const { cells } = Astro.props;
       padding: var(--space-6) 0;
     }
 
-    .metric-band__cell:first-child {
+    .metric-band__cell:first-child,
+    .metric-band__cell:not(:first-child) {
       padding-left: 0;
     }
 
     .metric-band__cell:last-child {
       border-bottom: none;
+    }
+
+    .metric-band__value--long {
+      font-size: 30px;
     }
   }
 </style>

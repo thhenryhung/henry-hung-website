@@ -22,11 +22,10 @@ standfirst: "A Fortune 100 platform rebuild was four months behind, and requirem
 bandMetrics:
   - metric: "8×"
     caption: "Requirements throughput"
-  - metric: "2–3 wk → 1–2 d"
+  - metric: "2–3 weeks → 1–2 days"
     caption: "Time to produce each epic"
   - metric: "30+"
     caption: "Engineers served downstream"
-architectureNote: "Recreated workflow and interface — anonymized for confidentiality."
 decisions:
   - title: "Source truth before synthetic completeness"
     chose: "Treating legacy documentation as authoritative, explicitly flagging gaps and separating analogous-system suggestions until a product owner approved them."

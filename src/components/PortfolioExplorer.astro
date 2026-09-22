@@ -91,9 +91,14 @@ const { projects } = Astro.props;
 
           <div class="portfolio-explorer__visual">
             {project.data.screenshot ? (
-              <div class:list={["portfolio-explorer__screen", `portfolio-explorer__screen--${project.id}`]} role="img" aria-label={project.data.screenshotAlt ?? `Product view for ${project.data.title}`}>
-                <img src={project.data.screenshot} alt="" />
-              </div>
+              <>
+                <div class:list={["portfolio-explorer__screen", `portfolio-explorer__screen--${project.id}`]} role="img" aria-label={project.data.screenshotAlt ?? `Product view for ${project.data.title}`}>
+                  <img src={project.data.screenshot} alt="" />
+                </div>
+                {project.data.tag === 'Client anonymized' && (
+                  <p class="mono portfolio-explorer__screen-note">Sanitized screen example to protect client confidentiality</p>
+                )}
+              </>
             ) : (
               <div class="portfolio-explorer__diagram" role="img" aria-label={`Simplified flow for ${project.data.title}`}>
                 <span>{project.data.diagramLabels?.[0] ?? 'Input'}</span>
@@ -315,6 +320,15 @@ const { projects } = Astro.props;
     object-fit: cover;
     object-position: top;
     transition: transform 0.45s ease;
+  }
+
+  .portfolio-explorer__screen-note {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--rule);
+    background: var(--panel-strong);
+    color: var(--meta);
+    font-size: 8px;
+    line-height: 1.45;
   }
 
   .portfolio-explorer__screen--insurance-copilot,

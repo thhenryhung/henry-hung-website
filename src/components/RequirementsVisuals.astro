@@ -1,74 +1,163 @@
 <div class="requirements-visuals">
   <div
-    class="requirements-flow"
+    class="requirements-map"
     role="img"
-    aria-label="Requirements agent workflow: legacy documents are retrieved and analyzed, gaps are flagged, structured requirements are drafted, and a product owner reviews and approves them"
+    aria-label="Requirements workflow: legacy documents and comparable implementation patterns feed a retrieval and gap-detection agent, which produces cited requirements for product-owner review"
   >
-    <p class="mono requirements-visuals__label">Anonymized system flow</p>
-    <div class="requirements-flow__track">
-      <div class="requirements-flow__node">
-        <span class="mono">01 · Source</span>
-        <strong>Legacy documents</strong>
+    <div class="requirements-map__header">
+      <div>
+        <p class="mono requirements-visuals__kicker">Product architecture</p>
+        <h3>From fragmented documents to reviewed requirements</h3>
       </div>
-      <i aria-hidden="true">→</i>
-      <div class="requirements-flow__node requirements-flow__node--accent">
-        <span class="mono">02 · Agent</span>
-        <strong>Retrieve + identify gaps</strong>
+      <span class="mono requirements-map__badge">Human approval required</span>
+    </div>
+
+    <div class="requirements-map__flow">
+      <div class="requirements-map__group">
+        <p class="mono requirements-map__group-label">Inputs</p>
+        <div class="requirements-map__stack">
+          <div class="requirements-map__card"><i>PDF</i><span>Legacy servicing guide</span></div>
+          <div class="requirements-map__card"><i>DOC</i><span>Business rules</span></div>
+          <div class="requirements-map__card requirements-map__card--reference"><i>REF</i><span>Comparable patterns</span></div>
+        </div>
       </div>
-      <i aria-hidden="true">→</i>
-      <div class="requirements-flow__node">
-        <span class="mono">03 · Draft</span>
-        <strong>Epics + user stories</strong>
+
+      <span class="requirements-map__arrow" aria-hidden="true">→</span>
+
+      <div class="requirements-map__engine">
+        <p class="mono">Requirements agent</p>
+        <strong>Grounded drafting</strong>
+        <div class="requirements-map__modules">
+          <span>Retrieve + cite</span>
+          <span>Extract rules</span>
+          <span>Detect gaps</span>
+        </div>
       </div>
-      <i aria-hidden="true">→</i>
-      <div class="requirements-flow__node">
-        <span class="mono">04 · Owner</span>
-        <strong>Review + approve</strong>
+
+      <span class="requirements-map__arrow" aria-hidden="true">→</span>
+
+      <div class="requirements-map__group">
+        <p class="mono requirements-map__group-label">Outputs</p>
+        <div class="requirements-map__stack">
+          <div class="requirements-map__card"><i>EPIC</i><span>Structured requirement</span></div>
+          <div class="requirements-map__card"><i>LINK</i><span>Source traceability</span></div>
+          <div class="requirements-map__card requirements-map__card--gap"><i>GAP</i><span>Owner decision</span></div>
+        </div>
+      </div>
+
+      <span class="requirements-map__arrow" aria-hidden="true">→</span>
+
+      <div class="requirements-map__owner">
+        <span class="requirements-map__avatar" aria-hidden="true">PO</span>
+        <div>
+          <p class="mono">Product owner</p>
+          <strong>Review + approve</strong>
+        </div>
+        <span class="requirements-map__approved">Build ready</span>
       </div>
     </div>
-    <p class="requirements-flow__guardrail">
-      <span class="mono">Guardrail</span>
-      Source-backed requirements stay distinct from suggested gap-filling content.
-    </p>
+
+    <div class="requirements-map__legend mono">
+      <span><i class="requirements-map__dot requirements-map__dot--source"></i> Source-backed</span>
+      <span><i class="requirements-map__dot requirements-map__dot--suggestion"></i> AI suggestion—clearly labeled</span>
+      <span><i class="requirements-map__dot requirements-map__dot--human"></i> Human decision</span>
+    </div>
   </div>
 
   <div
-    class="requirements-workspace"
+    class="requirements-app"
     role="img"
-    aria-label="Recreated requirements-agent interface showing a legacy source, a drafted epic, a highlighted documentation gap and product-owner approval controls"
+    aria-label="Sanitized requirements product showing a source-grounded epic, citations, a documentation gap and product-owner review controls"
   >
-    <div class="requirements-workspace__bar">
-      <span class="mono">Requirements workspace</span>
-      <span class="requirements-workspace__status"><i></i> Draft in review</span>
+    <div class="requirements-app__topbar">
+      <div class="requirements-app__brand">
+        <span class="requirements-app__mark" aria-hidden="true">R</span>
+        <strong>Requirements Studio</strong>
+      </div>
+      <div class="requirements-app__project mono">Platform modernization / Servicing</div>
+      <div class="requirements-app__user" aria-hidden="true">HH</div>
     </div>
-    <div class="requirements-workspace__body">
-      <aside class="requirements-workspace__source">
-        <p class="mono requirements-visuals__label">Source material</p>
-        <strong>Legacy servicing guide</strong>
-        <div class="requirements-workspace__lines" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
+
+    <div class="requirements-app__body">
+      <aside class="requirements-app__sidebar">
+        <p class="mono requirements-visuals__kicker">Workspace</p>
+        <div class="requirements-app__nav">
+          <span>Overview</span>
+          <span>Source library <i>48</i></span>
+          <span class="requirements-app__nav-active">Epics <i>12</i></span>
+          <span>Review queue <i>3</i></span>
         </div>
-        <div class="requirements-workspace__citation mono">Source 04 · § 3.2</div>
+        <div class="requirements-app__source-health">
+          <span class="mono">Source health</span>
+          <strong>42 cited · 6 gaps</strong>
+          <div><i></i></div>
+        </div>
       </aside>
-      <section class="requirements-workspace__draft">
-        <p class="mono requirements-visuals__label">Generated epic</p>
-        <h3>Update customer communication preferences</h3>
-        <p>As a servicing specialist, I need to record and apply a customer's channel preferences across future outreach.</p>
-        <div class="requirements-workspace__gap">
+
+      <main class="requirements-app__main">
+        <div class="requirements-app__breadcrumbs mono">Epics / EPC-0142</div>
+        <div class="requirements-app__title-row">
           <div>
-            <span class="mono">Documentation gap</span>
-            <strong>Conflict handling is not defined in the legacy source.</strong>
+            <span class="requirements-app__status">Draft in review</span>
+            <h3>Customer communication preferences</h3>
           </div>
-          <span class="requirements-workspace__button">View suggested content</span>
+          <div class="requirements-app__title-meta mono">3 sources · Draft 03</div>
         </div>
-        <div class="requirements-workspace__controls">
+
+        <div class="requirements-app__content">
+          <section class="requirements-app__document">
+            <div class="requirements-app__section-head">
+              <p class="mono requirements-visuals__kicker">Generated epic</p>
+              <span class="requirements-app__confidence">92% grounded</span>
+            </div>
+            <p class="requirements-app__story">
+              As a servicing specialist, I need to record and apply a customer's channel preferences across future outreach.
+            </p>
+
+            <div class="requirements-app__criteria">
+              <p class="mono requirements-visuals__kicker">Acceptance criteria</p>
+              <div><i>1</i><span>Store a preferred channel and effective date.</span><b>Source 04</b></div>
+              <div><i>2</i><span>Apply the preference to future servicing messages.</span><b>Source 11</b></div>
+              <div><i>3</i><span>Preserve an auditable change history.</span><b>Source 18</b></div>
+            </div>
+
+            <div class="requirements-app__gap">
+              <div class="requirements-app__gap-icon" aria-hidden="true">!</div>
+              <div>
+                <p class="mono">Documentation gap</p>
+                <strong>Conflict handling is not defined in the legacy source.</strong>
+                <span>A comparable implementation pattern is available for review.</span>
+              </div>
+              <span class="requirements-app__review-pill">Review suggestion</span>
+            </div>
+          </section>
+
+          <aside class="requirements-app__sources">
+            <p class="mono requirements-visuals__kicker">Evidence</p>
+            <div class="requirements-app__source-card requirements-app__source-card--active">
+              <span class="mono">Source 04 · §3.2</span>
+              <strong>Servicing guide</strong>
+              <p>“The customer's active channel preference must be honored...”</p>
+            </div>
+            <div class="requirements-app__source-card">
+              <span class="mono">Source 11 · §7.1</span>
+              <strong>Communication rules</strong>
+            </div>
+            <div class="requirements-app__source-card">
+              <span class="mono">Source 18 · §2.4</span>
+              <strong>Audit requirements</strong>
+            </div>
+          </aside>
+        </div>
+
+        <div class="requirements-app__actions">
           <span class="mono">Owner decision required</span>
           <div>
-            <span class="requirements-workspace__button">Request revision</span>
-            <span class="requirements-workspace__button requirements-workspace__approve">Approve epic</span>
+            <span class="requirements-app__button">Request revision</span>
+            <span class="requirements-app__button requirements-app__button--primary">Approve epic</span>
           </div>
         </div>
-      </section>
+      </main>
     </div>
   </div>
 </div>
@@ -76,278 +165,634 @@
 <style>
   .requirements-visuals {
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-7);
     margin-top: var(--space-9);
   }
 
-  .requirements-visuals__label {
+  .requirements-visuals__kicker {
     color: var(--meta);
   }
 
-  .requirements-flow,
-  .requirements-workspace {
+  .requirements-map,
+  .requirements-app {
+    overflow: hidden;
     border: 1px solid var(--rule);
-    background: var(--panel);
+    background: #f6f9fc;
+    box-shadow: 0 18px 50px rgba(18, 32, 54, 0.07);
   }
 
-  .requirements-flow {
+  .requirements-map {
     padding: var(--space-7);
   }
 
-  .requirements-flow__track {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-    align-items: stretch;
-    gap: var(--space-3);
-    margin-top: var(--space-5);
-  }
-
-  .requirements-flow__track > i {
-    align-self: center;
-    color: var(--accent);
-    font-style: normal;
-  }
-
-  .requirements-flow__node {
-    min-height: 104px;
+  .requirements-map__header {
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: var(--space-5);
-    padding: var(--space-4);
-    background: var(--paper);
-    border: 1px solid var(--rule);
+    gap: var(--space-6);
   }
 
-  .requirements-flow__node span {
-    color: var(--meta);
-  }
-
-  .requirements-flow__node strong {
-    font-family: var(--font-display);
-    font-size: 17px;
-    line-height: 1.25;
-  }
-
-  .requirements-flow__node--accent {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--paper);
-  }
-
-  .requirements-flow__node--accent span {
-    color: var(--paper);
-    opacity: 0.75;
-  }
-
-  .requirements-flow__guardrail {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--space-4);
-    margin-top: var(--space-5);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--rule);
-    color: var(--text-soft);
-    font-size: 14px;
-  }
-
-  .requirements-flow__guardrail span {
-    color: var(--accent);
-  }
-
-  .requirements-workspace {
-    background: var(--paper);
-  }
-
-  .requirements-workspace__bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    padding: var(--space-4) var(--space-5);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .requirements-workspace__status {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--text-soft);
-    font-size: 13px;
-  }
-
-  .requirements-workspace__status i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .requirements-workspace__body {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    min-height: 360px;
-  }
-
-  .requirements-workspace__source,
-  .requirements-workspace__draft {
-    padding: var(--space-6);
-  }
-
-  .requirements-workspace__source {
-    background: var(--panel);
-    border-right: 1px solid var(--rule);
-  }
-
-  .requirements-workspace__source > strong {
-    display: block;
-    margin-top: var(--space-4);
-    font-size: 14px;
-  }
-
-  .requirements-workspace__lines {
-    display: grid;
-    gap: 10px;
-    margin-top: var(--space-6);
-  }
-
-  .requirements-workspace__lines span {
-    display: block;
-    height: 5px;
-    background: var(--rule);
-  }
-
-  .requirements-workspace__lines span:nth-child(2),
-  .requirements-workspace__lines span:nth-child(5) {
-    width: 72%;
-  }
-
-  .requirements-workspace__citation {
-    margin-top: var(--space-7);
-    padding: var(--space-3);
-    border-left: 2px solid var(--accent);
-    background: var(--paper);
-    color: var(--accent);
-  }
-
-  .requirements-workspace__draft h3 {
-    margin-top: var(--space-3);
-    font-size: 24px;
-    line-height: 1.25;
-  }
-
-  .requirements-workspace__draft > p:not(.requirements-visuals__label) {
-    margin-top: var(--space-4);
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--text-soft);
-  }
-
-  .requirements-workspace__gap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-5);
-    margin-top: var(--space-7);
-    padding: var(--space-4);
-    border: 1px solid var(--accent);
-    background: var(--panel);
-  }
-
-  .requirements-workspace__gap span,
-  .requirements-workspace__gap strong {
-    display: block;
-  }
-
-  .requirements-workspace__gap span {
-    color: var(--accent);
-  }
-
-  .requirements-workspace__gap strong {
+  .requirements-map__header h3 {
     margin-top: var(--space-2);
-    font-size: 14px;
-    line-height: 1.4;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 22px;
+    line-height: 1.25;
   }
 
-  .requirements-workspace__button {
-    min-height: 38px;
+  .requirements-map__badge,
+  .requirements-app__status,
+  .requirements-app__confidence {
     display: inline-flex;
     align-items: center;
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--rule);
-    background: var(--paper);
-    color: var(--text);
-    font-size: 12px;
+    min-height: 28px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #dce9f5;
+    color: var(--accent);
     white-space: nowrap;
   }
 
-  .requirements-workspace__controls {
-    display: flex;
+  .requirements-map__flow {
+    display: grid;
+    grid-template-columns: 1.05fr auto 1.15fr auto 1.05fr auto 0.9fr;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-5);
+    gap: var(--space-3);
     margin-top: var(--space-7);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--rule);
+  }
+
+  .requirements-map__group-label {
+    margin-bottom: var(--space-2);
     color: var(--meta);
   }
 
-  .requirements-workspace__controls > div {
-    display: flex;
-    gap: var(--space-2);
+  .requirements-map__stack {
+    display: grid;
+    gap: 6px;
   }
 
-  .requirements-workspace .requirements-workspace__approve {
+  .requirements-map__card {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 8px;
+    border: 1px solid #d6e0e9;
+    border-radius: 4px;
+    background: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .requirements-map__card i {
+    display: inline-flex;
+    min-height: 26px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background: #e6eef6;
+    color: var(--accent);
+    font: 8px var(--font-meta);
+    font-style: normal;
+  }
+
+  .requirements-map__card--reference i,
+  .requirements-map__dot--suggestion {
+    background: #f3e7c9;
+    color: #70531b;
+  }
+
+  .requirements-map__card--gap i,
+  .requirements-map__dot--human {
+    background: #dbe8df;
+    color: #315a40;
+  }
+
+  .requirements-map__engine {
+    padding: var(--space-5);
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+  }
+
+  .requirements-map__engine p {
+    color: #bfd2ea;
+  }
+
+  .requirements-map__engine > strong {
+    display: block;
+    margin-top: var(--space-2);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+  }
+
+  .requirements-map__modules {
+    display: grid;
+    gap: 5px;
+    margin-top: var(--space-4);
+  }
+
+  .requirements-map__modules span {
+    padding: 6px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    font: 9px var(--font-meta);
+  }
+
+  .requirements-map__arrow {
+    color: var(--accent);
+    font-size: 18px;
+  }
+
+  .requirements-map__owner {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-3);
+    border: 1px solid #d6e0e9;
+    border-radius: 6px;
+    background: white;
+    text-align: center;
+  }
+
+  .requirements-map__avatar,
+  .requirements-app__user,
+  .requirements-app__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font: 10px var(--font-meta);
+  }
+
+  .requirements-map__avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .requirements-map__owner p {
+    color: var(--meta);
+  }
+
+  .requirements-map__owner strong {
+    display: block;
+    margin-top: 3px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+  }
+
+  .requirements-map__approved {
+    padding: 4px 7px;
+    border-radius: 999px;
+    background: #dbe8df;
+    color: #315a40;
+    font: 8px var(--font-meta);
+    text-transform: uppercase;
+  }
+
+  .requirements-map__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid #d6e0e9;
+    color: var(--meta);
+  }
+
+  .requirements-map__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .requirements-map__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .requirements-map__dot--source {
+    background: var(--accent);
+  }
+
+  .requirements-app {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #27384a;
+  }
+
+  .requirements-app__topbar {
+    min-height: 52px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-4);
+    padding: 0 var(--space-5);
+    border-bottom: 1px solid #dbe3eb;
+    background: white;
+  }
+
+  .requirements-app__brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+  }
+
+  .requirements-app__mark {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+  }
+
+  .requirements-app__project {
+    color: #6b7b8c;
+    letter-spacing: 0.06em;
+  }
+
+  .requirements-app__user {
+    width: 28px;
+    height: 28px;
+    justify-self: end;
+    background: #dce9f5;
+    color: var(--accent);
+  }
+
+  .requirements-app__body {
+    display: grid;
+    grid-template-columns: 152px minmax(0, 1fr);
+    min-height: 500px;
+  }
+
+  .requirements-app__sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5) var(--space-3);
+    border-right: 1px solid #dbe3eb;
+    background: #edf3f8;
+  }
+
+  .requirements-app__nav {
+    display: grid;
+    gap: 4px;
+    margin-top: var(--space-4);
+  }
+
+  .requirements-app__nav span {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 9px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+
+  .requirements-app__nav i {
+    color: #718196;
+    font-style: normal;
+  }
+
+  .requirements-app__nav .requirements-app__nav-active {
+    background: white;
+    color: var(--accent);
+    box-shadow: 0 3px 12px rgba(18, 32, 54, 0.06);
+    font-weight: 600;
+  }
+
+  .requirements-app__source-health {
+    margin-top: auto;
+    padding: var(--space-3);
+    border-radius: 4px;
+    background: white;
+  }
+
+  .requirements-app__source-health > span,
+  .requirements-app__source-health > strong {
+    display: block;
+  }
+
+  .requirements-app__source-health > strong {
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  .requirements-app__source-health > div {
+    height: 4px;
+    margin-top: 9px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #dce4eb;
+  }
+
+  .requirements-app__source-health > div i {
+    display: block;
+    width: 76%;
+    height: 100%;
+    background: var(--accent);
+  }
+
+  .requirements-app__main {
+    min-width: 0;
+    padding: var(--space-5);
+  }
+
+  .requirements-app__breadcrumbs,
+  .requirements-app__title-meta {
+    color: #718196;
+    letter-spacing: 0.06em;
+  }
+
+  .requirements-app__title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid #dbe3eb;
+  }
+
+  .requirements-app__title-row h3 {
+    margin-top: 7px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .requirements-app__status,
+  .requirements-app__confidence {
+    min-height: 24px;
+    font-size: 9px;
+  }
+
+  .requirements-app__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 176px;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .requirements-app__document,
+  .requirements-app__sources {
+    border: 1px solid #dbe3eb;
+    border-radius: 5px;
+    background: white;
+  }
+
+  .requirements-app__document {
+    padding: var(--space-5);
+  }
+
+  .requirements-app__section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .requirements-app__story {
+    margin-top: var(--space-3);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .requirements-app__criteria {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid #e3e9ef;
+  }
+
+  .requirements-app__criteria > div {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .requirements-app__criteria i {
+    display: inline-flex;
+    width: 19px;
+    height: 19px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e7eff7;
+    color: var(--accent);
+    font-size: 9px;
+    font-style: normal;
+  }
+
+  .requirements-app__criteria b {
+    padding: 3px 5px;
+    border-radius: 3px;
+    background: #edf3f8;
+    color: #63768a;
+    font: 8px var(--font-meta);
+    white-space: nowrap;
+  }
+
+  .requirements-app__gap {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 9px;
+    margin-top: var(--space-5);
+    padding: var(--space-3);
+    border: 1px solid #d8bd78;
+    border-radius: 4px;
+    background: #fbf7ec;
+  }
+
+  .requirements-app__gap-icon {
+    display: inline-flex;
+    width: 26px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ead9ac;
+    color: #70531b;
+    font-weight: 700;
+  }
+
+  .requirements-app__gap p {
+    color: #806326;
+  }
+
+  .requirements-app__gap strong,
+  .requirements-app__gap span {
+    display: block;
+  }
+
+  .requirements-app__gap strong {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+  .requirements-app__gap span:not(.requirements-app__review-pill) {
+    margin-top: 3px;
+    color: #6c7885;
+    font-size: 9px;
+  }
+
+  .requirements-app__review-pill {
+    padding: 5px 7px;
+    border: 1px solid #d8bd78;
+    border-radius: 3px;
+    background: white;
+    color: #70531b;
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  .requirements-app__sources {
+    padding: var(--space-3);
+    background: #f4f7fa;
+  }
+
+  .requirements-app__source-card {
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #dbe3eb;
+    border-radius: 4px;
+    background: white;
+  }
+
+  .requirements-app__source-card--active {
+    border-left: 3px solid var(--accent);
+  }
+
+  .requirements-app__source-card span {
+    color: var(--accent);
+  }
+
+  .requirements-app__source-card strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  .requirements-app__source-card p {
+    margin-top: 6px;
+    color: #667789;
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  .requirements-app__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid #dbe3eb;
+    color: #718196;
+  }
+
+  .requirements-app__actions > div {
+    display: flex;
+    gap: 8px;
+  }
+
+  .requirements-app__button {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    padding: 6px 10px;
+    border: 1px solid #cdd7e1;
+    border-radius: 4px;
+    background: white;
+    font-size: 9px;
+  }
+
+  .requirements-app__button--primary {
     border-color: var(--accent);
     background: var(--accent);
-    color: var(--paper);
+    color: white;
   }
 
   @media (max-width: 768px) {
-    .requirements-flow__track {
-      grid-template-columns: 1fr;
+    .requirements-map,
+    .requirements-app__main {
+      padding: var(--space-5);
     }
 
-    .requirements-flow__track > i {
-      transform: rotate(90deg);
-      justify-self: center;
-    }
-
-    .requirements-flow__node {
-      min-height: 84px;
-    }
-
-    .requirements-workspace__body {
-      grid-template-columns: 1fr;
-    }
-
-    .requirements-workspace__source {
-      border-right: 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .requirements-workspace__gap,
-    .requirements-workspace__controls {
+    .requirements-map__header,
+    .requirements-app__title-row,
+    .requirements-app__actions {
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    .requirements-map__flow {
+      grid-template-columns: 1fr;
+    }
+
+    .requirements-map__arrow {
+      justify-self: center;
+      transform: rotate(90deg);
+    }
+
+    .requirements-app__topbar {
+      grid-template-columns: 1fr auto;
+    }
+
+    .requirements-app__project {
+      display: none;
+    }
+
+    .requirements-app__body {
+      grid-template-columns: 1fr;
+    }
+
+    .requirements-app__sidebar {
+      display: none;
+    }
+
+    .requirements-app__content {
+      grid-template-columns: 1fr;
+    }
+
+    .requirements-app__sources {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .requirements-app__source-card {
+      min-width: 0;
     }
   }
 
   @media (max-width: 480px) {
-    .requirements-flow,
-    .requirements-workspace__source,
-    .requirements-workspace__draft {
-      padding: var(--space-5);
+    .requirements-map__badge,
+    .requirements-app__title-meta {
+      display: none;
     }
 
-    .requirements-flow__guardrail {
+    .requirements-app__sources {
       grid-template-columns: 1fr;
     }
 
-    .requirements-workspace__bar,
-    .requirements-workspace__controls > div {
-      align-items: flex-start;
-      flex-direction: column;
+    .requirements-app__gap {
+      grid-template-columns: 28px 1fr;
+    }
+
+    .requirements-app__review-pill {
+      grid-column: 2;
+      justify-self: start;
+    }
+
+    .requirements-app__actions > div {
+      flex-wrap: wrap;
     }
   }
 </style>

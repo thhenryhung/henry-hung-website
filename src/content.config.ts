@@ -35,7 +35,6 @@ const projects = defineCollection({
         })
       )
       .optional(),
-    architectureNote: z.string().optional(),
     pullQuote: z.string().optional(),
     pullQuoteCite: z.string().optional(),
     decisions: z

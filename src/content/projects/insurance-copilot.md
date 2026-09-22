@@ -25,7 +25,6 @@ bandMetrics:
     caption: "Preparation per conversation, down from roughly 15–30 minutes"
   - metric: "~20"
     caption: "Frontline agents testing the prototype"
-architectureNote: "Recreated illustration — not the shipped product; anonymized for confidentiality."
 pullQuote: "I no longer have to open ten tabs to understand what happened with a customer, then spend fifteen minutes writing an outreach. The co-pilot does it in two minutes."
 pullQuoteCite: "Frontline insurance agent"
 decisions:

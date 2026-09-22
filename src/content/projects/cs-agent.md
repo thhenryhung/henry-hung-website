@@ -25,7 +25,6 @@ bandMetrics:
     caption: "User interviews"
   - metric: "1M+"
     caption: "Projected users"
-architectureNote: "Recreated illustration — not the shipped product; anonymized for confidentiality."
 pullQuote: "I would ask about my policy in ten different ways, and it would still tell me it couldn't help. Then I'd need to speak to an agent anyway."
 pullQuoteCite: "Customer"
 decisions:
