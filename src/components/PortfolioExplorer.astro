@@ -76,16 +76,17 @@ const { projects } = Astro.props;
               <span>{project.data.metricCaption}</span>
             </div>
 
-            {project.data.hasCaseStudy ? (
-              <a href={`/work/${project.id}`} class="mono portfolio-explorer__link">Explore the decisions →</a>
-            ) : project.data.demoUrl ? (
-              <div>
-                <a href={project.data.demoUrl} class="mono portfolio-explorer__link" target="_blank" rel="noopener noreferrer">View live demo →</a>
+            {(project.data.hasCaseStudy || project.data.demoUrl) ? (
+              <div class="portfolio-explorer__actions">
+                {project.data.hasCaseStudy && (
+                  <a href={`/work/${project.id}`} class="mono portfolio-explorer__link">Read detailed case study →</a>
+                )}
+                {project.data.demoUrl && (
+                  <a href={project.data.demoUrl} class="mono portfolio-explorer__link portfolio-explorer__link--secondary" target="_blank" rel="noopener noreferrer">View live demo →</a>
+                )}
                 {project.data.demoNote && <p class="mono portfolio-explorer__note">{project.data.demoNote}</p>}
               </div>
-            ) : (
-              <p class="mono portfolio-explorer__note">Case study coming soon</p>
-            )}
+            ) : <p class="mono portfolio-explorer__note">Case study coming soon</p>}
           </div>
 
           <div class="portfolio-explorer__visual">
@@ -102,9 +103,6 @@ const { projects } = Astro.props;
                 <span>{project.data.diagramLabels?.at(-1) ?? 'Outcome'}</span>
               </div>
             )}
-            <div class="portfolio-explorer__flow mono" aria-hidden="true">
-              <span>People</span><i>→</i><strong>Decision</strong><i>→</i><span>System</span>
-            </div>
           </div>
         </div>
       </article>
@@ -250,13 +248,49 @@ const { projects } = Astro.props;
     line-height: 1.45;
   }
 
-  .portfolio-explorer__link,
+  .portfolio-explorer__actions,
   .portfolio-explorer__note {
-    display: inline-block;
     margin-top: var(--space-7);
   }
 
+  .portfolio-explorer__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .portfolio-explorer__link {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-5);
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .portfolio-explorer__link:hover {
+    background: var(--accent-hover);
+    color: var(--paper);
+  }
+
+  .portfolio-explorer__link--secondary {
+    background: transparent;
+    color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+  }
+
+  .portfolio-explorer__link--secondary:hover {
+    background: var(--paper);
+    color: var(--accent-hover);
+    box-shadow: inset 0 0 0 1px var(--accent-hover);
+  }
+
   .portfolio-explorer__note {
+    display: inline-block;
+    flex-basis: 100%;
+    margin-top: 0;
     color: var(--meta);
   }
 
@@ -283,13 +317,15 @@ const { projects } = Astro.props;
     transition: transform 0.45s ease;
   }
 
-  .portfolio-explorer__screen--insurance-copilot {
+  .portfolio-explorer__screen--insurance-copilot,
+  .portfolio-explorer__screen--section-j {
     display: flex;
     align-items: center;
     padding: var(--space-5);
   }
 
-  .portfolio-explorer__screen--insurance-copilot img {
+  .portfolio-explorer__screen--insurance-copilot img,
+  .portfolio-explorer__screen--section-j img {
     height: auto;
     max-height: 100%;
     object-fit: contain;
@@ -330,27 +366,6 @@ const { projects } = Astro.props;
     color: var(--accent);
     font-style: normal;
     text-align: center;
-  }
-
-  .portfolio-explorer__flow {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    gap: var(--space-2);
-    align-items: center;
-    padding: var(--space-5);
-    border-top: 1px solid var(--rule);
-    text-align: center;
-    color: var(--text-soft);
-  }
-
-  .portfolio-explorer__flow i {
-    color: var(--accent);
-    font-style: normal;
-  }
-
-  .portfolio-explorer__flow strong {
-    color: var(--accent);
-    font-weight: 400;
   }
 
   :global(.no-js) .portfolio-explorer__tab {

@@ -9,6 +9,7 @@ import DiagramFrame from '../../components/DiagramFrame.astro';
 import MockupFrame from '../../components/MockupFrame.astro';
 import DecisionBlock from '../../components/DecisionBlock.astro';
 import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
+import RequirementsVisuals from '../../components/RequirementsVisuals.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => data.hasCaseStudy);
@@ -29,11 +30,7 @@ const railFacts = [
   { label: 'Research', value: p.research ?? '' },
 ].filter((f) => f.value);
 
-const bandCells = p.bandMetrics ?? [
-  { metric: p.metric, caption: p.metricCaption },
-  { metric: '—', caption: '[placeholder — second outcome metric]' },
-  { metric: '—', caption: '[placeholder — third outcome metric]' },
-];
+const bandCells = p.bandMetrics ?? [{ metric: p.metric, caption: p.metricCaption }];
 
 const problemParagraphs = (p.caseStudyProblem ?? p.problem).split('\n\n');
 const builtText = p.caseStudyBuilt ?? p.built;
@@ -74,6 +71,15 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
             <img src={p.screenshot} alt="" />
           </MockupFrame>
         )}
+
+        {p.demoUrl && (
+          <div class="case-study__demo">
+            <a href={p.demoUrl} class="mono" target="_blank" rel="noopener noreferrer">View live demo →</a>
+            {p.demoNote && <p class="mono">{p.demoNote}</p>}
+          </div>
+        )}
+
+        {project.id === 'agentic-requirements' && <RequirementsVisuals />}
 
         {project.id === 'cs-agent' && (
         <DiagramFrame label={`Architecture diagram for ${p.title}`}>
@@ -195,6 +201,32 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 
   .case-study__article :global(.metric-band) {
     margin-top: var(--space-11);
+  }
+
+  .case-study__demo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .case-study__demo a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-5);
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .case-study__demo a:hover {
+    background: var(--accent-hover);
+    color: var(--paper);
+  }
+
+  .case-study__demo p {
+    color: var(--meta);
   }
 
   .case-study__section-h2 {

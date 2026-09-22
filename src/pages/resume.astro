@@ -60,12 +60,12 @@ const mckinseyAchievements = [
 ];
 ---
 
-<BaseLayout title="Résumé — Henry Hung" description="Henry Hung's résumé — MBA candidate at Harvard Business School, formerly Engagement Manager at McKinsey & Company.">
+<BaseLayout title="Resume — Henry Hung" description="Henry Hung's resume — MBA candidate at Harvard Business School, formerly Engagement Manager at McKinsey & Company.">
   <Masthead />
 
   <div class="container resume">
     <header class="resume__header">
-      <p class="eyebrow">Résumé</p>
+      <p class="eyebrow">Resume</p>
       <div class="resume__header-row">
         <h1>Henry Hung</h1>
         <a href="/henry-hung-resume.pdf" download class="mono resume__download">Download PDF ↓</a>
@@ -155,7 +155,7 @@ const mckinseyAchievements = [
 
   .resume__header-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: var(--space-8);
     margin-top: var(--space-2);
@@ -168,8 +168,19 @@ const mckinseyAchievements = [
   }
 
   .resume__download {
-    color: var(--accent);
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    background: var(--accent);
+    color: var(--paper);
     white-space: nowrap;
+  }
+
+  .resume__download:hover {
+    background: var(--accent-hover);
+    color: var(--paper);
   }
 
   .resume__role {

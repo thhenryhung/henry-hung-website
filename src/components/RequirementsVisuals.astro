@@ -1,0 +1,353 @@
+<div class="requirements-visuals">
+  <div
+    class="requirements-flow"
+    role="img"
+    aria-label="Requirements agent workflow: legacy documents are retrieved and analyzed, gaps are flagged, structured requirements are drafted, and a product owner reviews and approves them"
+  >
+    <p class="mono requirements-visuals__label">Anonymized system flow</p>
+    <div class="requirements-flow__track">
+      <div class="requirements-flow__node">
+        <span class="mono">01 · Source</span>
+        <strong>Legacy documents</strong>
+      </div>
+      <i aria-hidden="true">→</i>
+      <div class="requirements-flow__node requirements-flow__node--accent">
+        <span class="mono">02 · Agent</span>
+        <strong>Retrieve + identify gaps</strong>
+      </div>
+      <i aria-hidden="true">→</i>
+      <div class="requirements-flow__node">
+        <span class="mono">03 · Draft</span>
+        <strong>Epics + user stories</strong>
+      </div>
+      <i aria-hidden="true">→</i>
+      <div class="requirements-flow__node">
+        <span class="mono">04 · Owner</span>
+        <strong>Review + approve</strong>
+      </div>
+    </div>
+    <p class="requirements-flow__guardrail">
+      <span class="mono">Guardrail</span>
+      Source-backed requirements stay distinct from suggested gap-filling content.
+    </p>
+  </div>
+
+  <div
+    class="requirements-workspace"
+    role="img"
+    aria-label="Recreated requirements-agent interface showing a legacy source, a drafted epic, a highlighted documentation gap and product-owner approval controls"
+  >
+    <div class="requirements-workspace__bar">
+      <span class="mono">Requirements workspace</span>
+      <span class="requirements-workspace__status"><i></i> Draft in review</span>
+    </div>
+    <div class="requirements-workspace__body">
+      <aside class="requirements-workspace__source">
+        <p class="mono requirements-visuals__label">Source material</p>
+        <strong>Legacy servicing guide</strong>
+        <div class="requirements-workspace__lines" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="requirements-workspace__citation mono">Source 04 · § 3.2</div>
+      </aside>
+      <section class="requirements-workspace__draft">
+        <p class="mono requirements-visuals__label">Generated epic</p>
+        <h3>Update customer communication preferences</h3>
+        <p>As a servicing specialist, I need to record and apply a customer's channel preferences across future outreach.</p>
+        <div class="requirements-workspace__gap">
+          <div>
+            <span class="mono">Documentation gap</span>
+            <strong>Conflict handling is not defined in the legacy source.</strong>
+          </div>
+          <span class="requirements-workspace__button">View suggested content</span>
+        </div>
+        <div class="requirements-workspace__controls">
+          <span class="mono">Owner decision required</span>
+          <div>
+            <span class="requirements-workspace__button">Request revision</span>
+            <span class="requirements-workspace__button requirements-workspace__approve">Approve epic</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  .requirements-visuals {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-9);
+  }
+
+  .requirements-visuals__label {
+    color: var(--meta);
+  }
+
+  .requirements-flow,
+  .requirements-workspace {
+    border: 1px solid var(--rule);
+    background: var(--panel);
+  }
+
+  .requirements-flow {
+    padding: var(--space-7);
+  }
+
+  .requirements-flow__track {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .requirements-flow__track > i {
+    align-self: center;
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .requirements-flow__node {
+    min-height: 104px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding: var(--space-4);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+
+  .requirements-flow__node span {
+    color: var(--meta);
+  }
+
+  .requirements-flow__node strong {
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .requirements-flow__node--accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--paper);
+  }
+
+  .requirements-flow__node--accent span {
+    color: var(--paper);
+    opacity: 0.75;
+  }
+
+  .requirements-flow__guardrail {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--rule);
+    color: var(--text-soft);
+    font-size: 14px;
+  }
+
+  .requirements-flow__guardrail span {
+    color: var(--accent);
+  }
+
+  .requirements-workspace {
+    background: var(--paper);
+  }
+
+  .requirements-workspace__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .requirements-workspace__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-soft);
+    font-size: 13px;
+  }
+
+  .requirements-workspace__status i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .requirements-workspace__body {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    min-height: 360px;
+  }
+
+  .requirements-workspace__source,
+  .requirements-workspace__draft {
+    padding: var(--space-6);
+  }
+
+  .requirements-workspace__source {
+    background: var(--panel);
+    border-right: 1px solid var(--rule);
+  }
+
+  .requirements-workspace__source > strong {
+    display: block;
+    margin-top: var(--space-4);
+    font-size: 14px;
+  }
+
+  .requirements-workspace__lines {
+    display: grid;
+    gap: 10px;
+    margin-top: var(--space-6);
+  }
+
+  .requirements-workspace__lines span {
+    display: block;
+    height: 5px;
+    background: var(--rule);
+  }
+
+  .requirements-workspace__lines span:nth-child(2),
+  .requirements-workspace__lines span:nth-child(5) {
+    width: 72%;
+  }
+
+  .requirements-workspace__citation {
+    margin-top: var(--space-7);
+    padding: var(--space-3);
+    border-left: 2px solid var(--accent);
+    background: var(--paper);
+    color: var(--accent);
+  }
+
+  .requirements-workspace__draft h3 {
+    margin-top: var(--space-3);
+    font-size: 24px;
+    line-height: 1.25;
+  }
+
+  .requirements-workspace__draft > p:not(.requirements-visuals__label) {
+    margin-top: var(--space-4);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-soft);
+  }
+
+  .requirements-workspace__gap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+    padding: var(--space-4);
+    border: 1px solid var(--accent);
+    background: var(--panel);
+  }
+
+  .requirements-workspace__gap span,
+  .requirements-workspace__gap strong {
+    display: block;
+  }
+
+  .requirements-workspace__gap span {
+    color: var(--accent);
+  }
+
+  .requirements-workspace__gap strong {
+    margin-top: var(--space-2);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .requirements-workspace__button {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--text);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .requirements-workspace__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--rule);
+    color: var(--meta);
+  }
+
+  .requirements-workspace__controls > div {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .requirements-workspace .requirements-workspace__approve {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  @media (max-width: 768px) {
+    .requirements-flow__track {
+      grid-template-columns: 1fr;
+    }
+
+    .requirements-flow__track > i {
+      transform: rotate(90deg);
+      justify-self: center;
+    }
+
+    .requirements-flow__node {
+      min-height: 84px;
+    }
+
+    .requirements-workspace__body {
+      grid-template-columns: 1fr;
+    }
+
+    .requirements-workspace__source {
+      border-right: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .requirements-workspace__gap,
+    .requirements-workspace__controls {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .requirements-flow,
+    .requirements-workspace__source,
+    .requirements-workspace__draft {
+      padding: var(--space-5);
+    }
+
+    .requirements-flow__guardrail {
+      grid-template-columns: 1fr;
+    }
+
+    .requirements-workspace__bar,
+    .requirements-workspace__controls > div {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
