@@ -1,12 +1,13 @@
 ---
 interface Props {
   compact?: boolean;
+  feature?: boolean;
 }
 
-const { compact = false } = Astro.props;
+const { compact = false, feature = false } = Astro.props;
 ---
 
-<figure class:list={["portrait", { "portrait--compact": compact }]}>
+<figure class:list={["portrait", { "portrait--compact": compact, "portrait--feature": feature }]}>
   <img
     class="portrait__image"
     src="/images/portrait.jpg"
@@ -35,10 +36,20 @@ const { compact = false } = Astro.props;
     height: 156px;
   }
 
+  .portrait--feature .portrait__image {
+    width: 300px;
+    height: 366px;
+  }
+
   @media (max-width: 768px) {
     .portrait__image {
       width: 152px;
       height: 186px;
+    }
+
+    .portrait--feature .portrait__image {
+      width: 220px;
+      height: 268px;
     }
   }
 </style>

@@ -39,7 +39,7 @@ const problemParagraphs = (p.caseStudyProblem ?? p.problem).split('\n\n');
 const builtText = p.caseStudyBuilt ?? p.built;
 const outcomeParagraphs = (p.outcome ?? '').split('\n\n').filter(Boolean);
 
-const allProjects = (await getCollection('projects')).sort((a, b) =>
+const allProjects = (await getCollection('projects', ({ data }) => data.hasCaseStudy)).sort((a, b) =>
   a.data.order.localeCompare(b.data.order)
 );
 const currentIndex = allProjects.findIndex((proj) => proj.id === project.id);

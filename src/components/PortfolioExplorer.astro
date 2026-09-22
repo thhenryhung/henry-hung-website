@@ -90,7 +90,7 @@ const { projects } = Astro.props;
 
           <div class="portfolio-explorer__visual">
             {project.data.screenshot ? (
-              <div class="portfolio-explorer__screen" role="img" aria-label={project.data.screenshotAlt ?? `Product view for ${project.data.title}`}>
+              <div class:list={["portfolio-explorer__screen", `portfolio-explorer__screen--${project.id}`]} role="img" aria-label={project.data.screenshotAlt ?? `Product view for ${project.data.title}`}>
                 <img src={project.data.screenshot} alt="" />
               </div>
             ) : (
@@ -281,6 +281,19 @@ const { projects } = Astro.props;
     object-fit: cover;
     object-position: top;
     transition: transform 0.45s ease;
+  }
+
+  .portfolio-explorer__screen--insurance-copilot {
+    display: flex;
+    align-items: center;
+    padding: var(--space-5);
+  }
+
+  .portfolio-explorer__screen--insurance-copilot img {
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 
   .portfolio-explorer__panel:hover .portfolio-explorer__screen img {
