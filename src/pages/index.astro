@@ -5,7 +5,6 @@ import Masthead from '../components/Masthead.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import PortfolioExplorer from '../components/PortfolioExplorer.astro';
-import Background from '../components/Background.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) =>
@@ -18,11 +17,10 @@ const projects = (await getCollection('projects')).sort((a, b) =>
   <Hero />
 
   <section class="container" id="portfolio">
-    <SectionHeader title="Selected work" descriptor="People → decision → system → outcome" />
+    <SectionHeader title="Portfolio" descriptor="People → decision → system → outcome" />
     <PortfolioExplorer projects={projects} />
   </section>
 
-  <Background />
   <SiteFooter />
 </BaseLayout>
 
