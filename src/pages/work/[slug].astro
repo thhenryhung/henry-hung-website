@@ -96,7 +96,17 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
         {outcomeParagraphs.map((paragraph) => <p>{paragraph}</p>)}
       </section>
 
-      <ConfidentialityNote />
+      {isClientProject ? (
+        <ConfidentialityNote />
+      ) : p.demoUrl ? (
+        <div class="case-study__project-note">
+          <p class="mono case-study__project-note-label">About the demo</p>
+          <p class="case-study__project-note-text">
+            This was an independent HBS side project, not client work. The public demo uses fictional
+            profiles and events and is separate from the private version used by the section.
+          </p>
+        </div>
+      ) : null}
     </article>
   </div>
 
@@ -221,6 +231,24 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
     font-size: 11px !important;
     line-height: 1.45 !important;
     color: var(--meta);
+  }
+
+  .case-study__project-note {
+    margin-top: var(--space-14);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--rule);
+  }
+
+  .case-study__project-note-label {
+    color: var(--meta);
+  }
+
+  .case-study__project-note-text {
+    max-width: 640px;
+    margin-top: var(--space-3);
+    color: var(--text-muted);
+    font-size: var(--text-small);
+    line-height: 1.5;
   }
 
   .case-study__footer {
