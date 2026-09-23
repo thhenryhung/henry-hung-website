@@ -12,7 +12,7 @@ const proof = [
 <section class="hero container">
   <div class="hero__grid">
     <div class="hero__copy">
-      <p class="eyebrow">Product manager · systems thinker · builder</p>
+      <p class="hero__intro">Hi, I am Henry</p>
       <h1 class="hero__headline">
         I understand how systems and people interact, and turn the insights into products that work
       </h1>
@@ -62,7 +62,15 @@ const proof = [
     line-height: 1.08;
     letter-spacing: -0.035em;
     max-width: 820px;
-    margin-top: var(--space-5);
+    margin-top: var(--space-4);
+  }
+
+  .hero__intro {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--accent);
   }
 
   .hero__lead {
@@ -72,7 +80,7 @@ const proof = [
     margin-top: var(--space-8);
     padding: 0;
     list-style: none;
-    font-size: 18px;
+    font-size: 19px;
     line-height: 1.5;
     color: var(--text-soft);
   }
@@ -147,7 +155,7 @@ const proof = [
   .hero__proof-item strong {
     display: block;
     font-family: var(--font-display);
-    font-size: 38px;
+    font-size: 40px;
     line-height: 1;
     color: var(--accent);
   }
@@ -177,12 +185,12 @@ const proof = [
     }
 
     .hero__headline {
-      font-size: 40px;
+      font-size: 42px;
       line-height: 1.08;
     }
 
     .hero__lead {
-      font-size: 17px;
+      font-size: 18px;
     }
 
     .hero__portrait {
@@ -208,8 +216,12 @@ const proof = [
   }
 
   @media (max-width: 480px) {
+    .hero__intro {
+      font-size: 29px;
+    }
+
     .hero__headline {
-      font-size: 34px;
+      font-size: 36px;
     }
 
     .hero__proof-item strong {

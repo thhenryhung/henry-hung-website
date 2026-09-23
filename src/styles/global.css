@@ -26,6 +26,11 @@
   --font-body: 'Newsreader', Georgia, serif;
   --font-meta: 'IBM Plex Mono', monospace;
 
+  --text-base: 18px;
+  --text-small: 16px;
+  --text-meta: 12px;
+  --text-eyebrow: 11px;
+
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -57,7 +62,7 @@ body {
   background: var(--paper);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: var(--text-base);
   line-height: 1.68;
   -webkit-font-smoothing: antialiased;
 }
@@ -114,14 +119,14 @@ dl, dt, dd {
 
 .mono {
   font-family: var(--font-meta);
-  font-size: 11px;
+  font-size: var(--text-meta);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .eyebrow {
   font-family: var(--font-meta);
-  font-size: 10px;
+  font-size: var(--text-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--meta);
