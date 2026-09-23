@@ -21,7 +21,7 @@ standfirst: "Frontline agents were juggling dozens of open customer relationship
 bandMetrics:
   - metric: "30%"
     caption: "Suggestion acceptance rate"
-  - metric: "<5 min"
+  - metric: "<5 minutes"
     caption: "Preparation per conversation, down from roughly 15–30 minutes"
   - metric: "~20"
     caption: "Frontline agents testing the prototype"

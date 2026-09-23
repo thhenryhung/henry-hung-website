@@ -16,11 +16,11 @@ const proof = [
       <h1 class="hero__headline">
         I understand how systems and people interact, and turn the insights into products that work
       </h1>
-      <p class="hero__lead">
-        Zero-to-one AI products and enterprise platforms, from the first customer interview to a
-        scaling product. Four years at McKinsey across Boston and Hong Kong; Master’s in Computer Science at UPenn,
-        now an MBA Candidate at Harvard Business School
-      </p>
+      <ul class="hero__lead">
+        <li>Zero-to-one AI products and enterprise platform modernizations, from the first customer interview to a scaling product</li>
+        <li>Four years at McKinsey across Boston and Hong Kong focusing on product development and management</li>
+        <li>Master’s in Computer Science at UPenn, now an MBA Candidate at Harvard Business School</li>
+      </ul>
       <div class="hero__actions mono">
         <a href="#portfolio" class="hero__primary">See portfolio ↓</a>
         <a href="/resume">View resume →</a>
@@ -66,11 +66,31 @@ const proof = [
   }
 
   .hero__lead {
+    display: grid;
+    gap: var(--space-3);
     max-width: 670px;
     margin-top: var(--space-8);
-    font-size: 20px;
-    line-height: 1.55;
+    padding: 0;
+    list-style: none;
+    font-size: 18px;
+    line-height: 1.5;
     color: var(--text-soft);
+  }
+
+  .hero__lead li {
+    display: grid;
+    grid-template-columns: 8px minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+
+  .hero__lead li::before {
+    width: 5px;
+    height: 5px;
+    content: '';
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateY(-2px);
   }
 
   .hero__actions {
@@ -162,7 +182,7 @@ const proof = [
     }
 
     .hero__lead {
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .hero__portrait {

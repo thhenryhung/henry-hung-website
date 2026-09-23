@@ -25,7 +25,7 @@ bandMetrics:
     caption: "Section adoption in the first week"
   - metric: "60+"
     caption: "Active users measured with Cloudflare Web Analytics"
-  - metric: "<1 wk"
+  - metric: "1 week"
     caption: "From concept to launch"
 decisions:
   - title: "Static simplicity over application complexity"
