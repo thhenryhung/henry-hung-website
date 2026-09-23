@@ -1,137 +1,296 @@
-# Henry Hung — portfolio design spec
+# Henry Hung portfolio — current design and product specification
 
-Hand-off for building the site in Astro. Direction: **Broadsheet** — light, editorial, understated. Reference comps live in the Design canvas (`Main.dc.html`, `A-Mobile.dc.html`, `CS-Agent.dc.html`, `CS-Agent-Mobile.dc.html`).
+This document describes the site that currently ships. It supersedes the original light-paper Broadsheet handoff and the later flip-book, navy-theme, and runner-character experiments.
 
-Design intent, so judgment calls go the right way: this is a document, not a landing page. Rules and type size carry the hierarchy; there are no cards, shadows, rounded corners, gradients or animation. The four outcome metrics are the loudest thing on the page after the name. Nothing bounces, fades in or parallaxes.
+Last reconciled with the implementation: September 2026.
 
----
+## 1. Product context
 
-## Palette
+The primary audience is a hiring manager, recruiter, product leader, or collaborator who needs to understand three things quickly:
 
-| Token | Hex | Use |
-|---|---|---|
-| `--paper` | `#FAF8F3` | Page background |
-| `--panel` | `#F4F1E8` | Diagram frames, inset blocks |
-| `--placeholder` | `#E8E4DA` | Portrait placeholder fill |
-| `--ink` | `#14120E` | Headings, heavy rules, primary text |
-| `--text` | `#3D3830` | Body copy |
-| `--text-soft` | `#4A453C` | Lead paragraphs, metric captions |
-| `--text-muted` | `#6B6355` | Italic project descriptors |
-| `--meta` | `#6E6757` | Mono labels, captions, eyebrows |
-| `--rule` | `#DCD6C8` | Hairline rules, borders |
-| `--accent` | `#1B3A6B` | Links, metrics, index numbers, diagram highlights |
-| `--accent-hover` | `#0E2547` | Link hover |
+1. what Henry has built;
+2. how he makes product decisions;
+3. whether the outcomes are credible.
 
-Diagram-only strokes: `#9A9284` (secondary structure), `#C7C0B0` (faint fill lines). Decorative; not held to text contrast.
+The site should feel authored and editorial, not like a generic portfolio template. Its organizing idea is:
 
-Accent alternates tried in the comps, if you ever want to swap: oxblood `#7A2E28`, olive `#3B4A2F`, pure ink `#14120E`. One accent only — never two at once.
+> **People → decision → system → outcome**
 
-Contrast: `--meta` on `--paper` is ~5.3:1, which holds at 10px. Do not lighten it. Anything lighter than `--meta` is decoration, never text.
+On the homepage, that becomes the more concrete sequence **Human signal → Product move → Result**. Long-form case studies then make the tradeoffs and evidence visible.
 
-No dark mode. Light only.
+This is not a marketing landing page. Avoid inflated claims, excessive animation, ornamental dashboards, and UI patterns that compete with the work itself.
 
----
+## 2. Current information architecture
 
-## Typography
+### Homepage (`/`)
 
-Three families, loaded from Google Fonts. In Astro, self-host them with `@fontsource` or `astro-font` rather than the CDN link used in the comps — it removes a render-blocking request and the layout shift on the Bodoni headline.
+1. Sticky masthead: wordmark, Portfolio, Resume, and “Let's talk” call to action
+2. Hero: introduction, product thesis, three career-context bullets, primary actions, and portrait
+3. Four proof points: products, interviews, team size, and projected users
+4. Portfolio heading and positioning descriptor
+5. Interactive project explorer with four projects
+6. Contact footer
 
-| Role | Family | Weights |
-|---|---|---|
-| Display | Bodoni Moda (optical size axis) | 600 |
-| Body | Newsreader (optical size axis) | 400, plus italic 400 |
-| Meta | IBM Plex Mono | 400 |
+There is deliberately no separate Background section; the résumé owns that information.
 
-Fallbacks: `'Bodoni Moda', Didot, serif` · `'Newsreader', Georgia, serif` · `'IBM Plex Mono', monospace`.
+### Résumé (`/resume`)
 
-**Desktop scale**
+1. Name, current positioning, and PDF download
+2. Experience before Education
+3. Technical and Personal sections
+4. Contact footer
 
-| Style | Size / line-height | Family | Notes |
-|---|---|---|---|
-| Hero h1 | 46 / 1.16, `-0.012em` | Display 600 | "systems and people" in `--accent` |
-| Case-study h1 | 44 / 1.14, `-0.012em` | Display 600 | |
-| Footer h2 | 46 / 1.1 | Display 600 | |
-| Section h2 | 32 / 1.2 | Display 600 | |
-| Case-study section h2 | 30 / 1.2 | Display 600 | Numbered: "01 — The problem" |
-| Project h3 | 26 / 1.25 | Display 600 | |
-| Decision h3 | 23 / 1.3 | Display 600 | |
-| Metric, project | 42 / 1.0 | Display 600 | `--accent` |
-| Metric, rail | 44 / 1.0 | Display 600 | `--accent` |
-| Metric, band | 34 / 1.0 | Display 600 | `--accent` |
-| Pull quote | 24 / 1.4 | Display 600 | |
-| Lead paragraph | 19–20 / 1.6 | Body 400 | `--text-soft` |
-| Prose | 17 / 1.68–1.72 | Body 400 | `--text` |
-| Project copy | 16 / 1.58 | Body 400 | `--text` |
-| Project descriptor | 16 / 1.45 italic | Body italic | `--text-muted` |
-| Caption | 15 / 1.5 | Body 400 | `--text-soft` |
-| Nav / inline link | 11, `0.14em`, uppercase | Mono | |
-| Field label / eyebrow | 10, `0.14em`, uppercase | Mono | `--meta` |
-| Wordmark | 11, `0.16em`, uppercase | Mono | |
+A slim timeline rail appears on desktop. It fills with scroll progress and marks McKinsey, Harvard Business School, and the University of Pennsylvania. It is supporting navigation texture, not the content itself.
 
-**Mobile overrides** (≤480px): hero h1 → 28 / 1.2; section h2 → 28; case-study h2 → 27; project h3 → 23; decision h3 → 22; metric → 36; band metric → 34; prose → 17; project copy → 16; lead → 17–18. Mono sizes do not change.
+### Case study (`/work/[slug]`)
 
-Measure caps at 640px for lead paragraphs, 660–680px for prose, 560px for project copy. Never let a line of 17px prose run past ~90 characters.
+1. Back link and case-study number
+2. Title and standfirst
+3. Three headline metrics
+4. The problem
+5. What I built, including a sanitized product screen or conceptual visual
+6. Key decisions using Chose / Over / Because
+7. Outcome and reflection
+8. Confidentiality note for client work
+9. Previous context through “Back to portfolio” and a next-case-study link
 
----
+Case studies use a centered reading column rather than the earlier sticky side rail.
 
-## Spacing
+## 3. Visual identity
 
-4px base. Used steps: **4, 8, 12, 14, 16, 18, 22, 24, 30, 36, 44, 52, 56, 72, 88**. Round to these rather than inventing values.
+### Direction
 
-Page gutter: 88px desktop, 24px mobile. Column gap between content and right/rail column: 56px desktop (44px inside project rows). Section top padding: 44–56px. Project rows: 30px vertical padding, separated by a 1px `--rule`.
+The current direction is **editorial product narrative**: structured like a well-designed report, but with the clarity and hierarchy of a modern product interface.
 
-**Rule system**, which carries most of the hierarchy:
+The system keeps the strongest parts of the original Broadsheet idea—rules, typography, measured prose, and typographic hierarchy—while using a more distinctive blue palette and a clearer sans-serif hero.
 
-- 2px `--ink` — section openers (under "Portfolio"), the top of every metric block, the footer's top edge, the top of the case-study rail blocks. Means "a new thing starts here."
-- 1px `--rule` — row separators, field separators, the masthead's bottom edge. Means "these are siblings."
+### Shape and depth
 
-No border radius anywhere except the mobile menu button (2px). No shadows.
+- Square corners by default
+- No drop shadows
+- No gradients
+- No glass cards beyond the masthead's restrained translucent backdrop
+- Flat panels separated by color and one-pixel rules
+- Two-pixel rules only for major section openings
+- Buttons are rectangular and compact, not pill-shaped
 
----
+### Color tokens
 
-## Components
+The site currently has one light-blue theme. There is no active light/dark toggle.
 
-| Component | Notes |
-|---|---|
-| `Masthead` | Wordmark left, mono nav right (Portfolio / Background / Contact). 1px bottom rule. On mobile the nav collapses to a 44×44 button — implement as a real `<button>` with `aria-label` and `aria-expanded`. |
-| `Hero` | Portrait figure left (212×258 desktop, 152×186 mobile, with a mono caption), headline and lead paragraph right. Stacks on mobile, portrait first. |
-| `PortraitFigure` | `<figure>` + `<figcaption>`. Currently a placeholder block; swap for a real image and drop the caption. |
-| `ProjectRow` | Index number (mono, accent, 44px column) · title, italic descriptor, Problem and Built labelled blocks, case-study link · right column with diagram then metric block. Collapses to a single column on mobile in that source order. |
-| `MetricBlock` | 2px `--ink` top rule, metric in display accent, caption in `--text-soft`, mono context line. Used on the homepage, in the case-study rail, and as a three-up band. |
-| `DiagramFrame` | 1px `--rule` border, `--panel` fill, inline SVG inside. 300×168 desktop, 342×190 mobile. |
-| `FactList` | `<dl>` of mono label + serif value, 2px rule above the first item, 1px between. Used in the Background rail, the case-study rail, and the footer contact table. |
-| `SectionHeader` | Display h2 left, mono descriptor right, 2px `--ink` rule beneath. |
-| `CaseStudyRail` | Sticky `<aside>` — back link, at-a-glance `FactList`, `MetricBlock`, section nav. Becomes a two-column fact grid above the article on mobile. |
-| `MetricBand` | Three cells divided by 1px rules, 2px above and 1px below. Stacks to three rows on mobile. |
-| `DecisionBlock` | Mono "Decision 0N" in accent, display h3, then Chose / Over / Because rows — an 84px mono label column on desktop, labels stacked above the text on mobile. |
-| `PullQuote` | 2px `--accent` left border, display quote, mono `<cite>`. |
-| `SiteFooter` | 2px `--ink` top rule. Left: "Get in touch" + positioning line. Right: contact `FactList` (email, LinkedIn, GitHub). Bottom bar: location and languages in mono. |
+| Token | Value | Role |
+| --- | --- | --- |
+| `--paper` | `#E9EFF5` | Page background |
+| `--panel` | `#D8E4EF` | Primary inset/project panel |
+| `--panel-strong` | `#C9D9E8` | Screen wells and stronger inset areas |
+| `--placeholder` | `#C5D4E2` | Neutral image placeholder |
+| `--ink` | `#122036` | Headings and strongest rules |
+| `--text` | `#26384D` | Body copy |
+| `--text-soft` | `#41536A` | Supporting copy |
+| `--text-muted` | `#5C6E83` | Descriptors and secondary labels |
+| `--meta` | `#587087` | Mono metadata |
+| `--rule` | `#C2D0DE` | Hairlines and separators |
+| `--accent` | `#173F78` | Links, calls to action, metrics, active states |
+| `--accent-hover` | `#0E2B55` | Link and button hover |
+| `--diagram-line` | `#758DA6` | Diagram structure |
+| `--diagram-faint` | `#B7C6D5` | Secondary diagram lines |
 
-Markup rules the comps follow and the build should keep: real `<a>`, `<button>`, `<dl>`/`<dt>`/`<dd>`, `<figure>`, `<blockquote>`/`<cite>`; never a clickable `<div>`. Every SVG gets `role="img"` and a descriptive `aria-label`. Touch targets ≥44px.
+Do not introduce a second accent color casually. Product screenshots may contain their own generic interface colors, but the surrounding site chrome remains within this palette.
 
----
+### Typography
 
-## Page layouts
+| Role | Family | Use |
+| --- | --- | --- |
+| Primary hero | System sans (`-apple-system`, BlinkMacSystemFont, Segoe UI) | The main product thesis; optimized for readability and immediacy |
+| Display | Bodoni Moda 600 | Intro line, page and section headings, metrics |
+| Body | Newsreader 400/600 and italic | Long-form reading, descriptions, résumé copy |
+| Meta | IBM Plex Mono 400 | Navigation, eyebrows, labels, controls, notes |
 
-**Homepage** (`/`) — masthead; hero; Portfolio section with four `ProjectRow`s; Background (prose left at 660px, `FactList` rail right at 300px: Now / Previously / Education / Languages); `SiteFooter`. Section nav is same-page anchors. Only project 01 links out for now; wire the rest as the case studies are written.
+Fonts are self-hosted through `@fontsource`; do not replace them with remote Google Fonts.
 
-**Case study** (`/work/[slug]`) — masthead; two columns, 300px sticky rail and 748px article; article runs eyebrow → h1 → standfirst → `MetricBand` → 01 Problem (with `PullQuote`) → 02 What I built (with `DiagramFrame`) → 03 Key decisions (three `DecisionBlock`s) → 04 Outcome; footer with back link and next-case-study link. On mobile the rail's facts become a two-column grid above the article and the architecture diagram switches to a vertical variant — the horizontal one is illegible at 342px, so ship two SVGs, not one scaled.
+Key live sizes:
 
-Content collection: one entry per project with `title`, `descriptor`, `problem`, `built`, `metric`, `metricCaption`, `context`, `role`, `team`, `scope`, `research`, `diagram`. The homepage row and the case-study rail both read from it.
+- hero headline: `clamp(42px, 5vw, 68px)`, 1.08 line height;
+- hero intro: 34px Bodoni;
+- proof metrics: 40px Bodoni;
+- portfolio project title: 40px desktop, 34px mobile;
+- case-study title: 48px desktop, 34px mobile;
+- résumé name: 48px desktop, 34px mobile;
+- base body: 18px / 1.68;
+- metadata: 11–12px uppercase with wide tracking.
 
-Breakpoints: single desktop layout to 1024px, single-column below 768px, mobile type scale below 480px. Container max 1280px.
+Body measures should stay near 640–680px. Avoid long, full-width prose.
 
----
+### Spacing and container
 
-## Before launch
+Spacing is tokenized on a four-pixel-derived scale in `src/styles/global.css`. Reuse `--space-1` through `--space-15`; do not add one-off values without a clear visual need.
 
-Placeholders in the comps, all deliberate:
+- maximum container width: 1280px;
+- desktop side gutter: 88px;
+- mobile side gutter: 24px;
+- major section spacing: 44–72px;
+- minimum interactive target: 44px where practical.
 
-- Portrait — currently a grey "HH" block in the hero.
-- LinkedIn and GitHub URLs — shown as `linkedin.com/in/[handle]`.
-- Email — set to `thhenryhung@gmail.com`; swap if you get a custom domain.
-- Footer positioning line — one sentence on the role, timing and kind of team you want. The page has no other direct ask.
-- Case study: the interview pull quote, the "Over" and "Because" halves of decisions 01 and 02, all of decision 03, and how the 10% was measured (eval set, baseline, period). An unqualified percentage reads as marketing to a senior PM interviewer.
-- Architecture diagram — replace with the real one, or a redacted screen if the client allows it.
+## 4. Core components and behavior
 
-Client work stays anonymized throughout: no logos, no client names, no identifiable screenshots.
+### Masthead
+
+- Sticky at the top with a subtle blurred paper background
+- “Henry Hung” is prominent at the upper left
+- Desktop navigation shows Portfolio, Resume, and a filled “Let's talk” CTA
+- At 768px and below, navigation becomes a menu button and stacked mobile menu
+- Menu state is expressed with `aria-expanded`; Escape closes it and returns focus
+
+### Hero
+
+- Copy leads; portrait supports it
+- Main headline uses sans-serif because the earlier serif headline was difficult to scan
+- Three bullets give specific career context
+- Two actions point to Portfolio and Résumé
+- Proof points provide immediate evidence beneath the introduction
+- Mobile stacks copy before portrait and changes the proof grid from four columns to two
+
+### Portfolio explorer
+
+The earlier 3D flip-book has been superseded by a tabbed explorer. The explorer is faster to scan, easier to maintain, and more reliable across screen sizes.
+
+- Desktop: a left project index and a large selected-project panel
+- Mobile: four compact numbered tabs above the panel
+- Content pattern: Human signal, Product move, Result
+- Right-hand visual: sanitized screenshot, conceptual requirements visual, or simple diagram
+- Hover may apply a restrained 1.025 image scale
+- Primary action opens the detailed case study; Section J also exposes its live demo
+
+Accessibility requirements:
+
+- `role="tablist"`, `role="tab"`, and `role="tabpanel"` are paired correctly;
+- only the active tab is in the tab order;
+- arrow keys cycle through tabs; Home and End jump to the bounds;
+- a polite live region announces selection;
+- without JavaScript, tab controls disappear and all project panels render sequentially;
+- reduced-motion removes transitions.
+
+### Product visuals
+
+Customer-service and insurance co-pilot visuals are sanitized mock screens supplied for this portfolio. The requirements-agent visual is a generic reconstruction. Section J uses a screenshot of its fictional-data demo.
+
+- Never add client names, logos, brand palettes, customer records, or identifying copy.
+- Keep the “Sanitized screen example to protect client confidentiality” label on client-work visuals.
+- Prefer realistic product structure over decorative abstraction.
+- Treat image filenames and alt text as public information.
+
+### Case studies
+
+- Reading width is capped at 760px inside a 940px container
+- The first screen prioritizes title, standfirst, and metrics
+- Each section has a numbered heading
+- Decisions use Chose / Over / Because to foreground judgment and tradeoffs
+- Mockups sit within flat framed panels
+- A confidentiality note appears after the outcome
+- The footer links back to the portfolio and forward to the next case study
+
+### Résumé timeline
+
+- Desktop only (`min-width: 1024px`)
+- One-pixel rail with an accent fill based on scroll position
+- Square dots align with three timeline stops
+- Decorative and `aria-hidden`; the underlying résumé remains linear and complete
+- Reduced-motion removes its height transition
+- Mobile receives the same content with no rail
+
+### Footer and contact
+
+The footer is the single contact destination. It uses icon-supported email, LinkedIn, and GitHub links and omits placeholder positioning copy and the old language list in the bottom-right corner.
+
+## 5. Responsive model
+
+Primary breakpoints:
+
+- `1024px`: portfolio and résumé timeline refinements
+- `768px`: single-column page structures, mobile navigation, horizontal project tabs
+- `480px`: smaller display type and compact spacing
+
+Mobile is not a scaled desktop layout. Specific behavior:
+
+- hero becomes one column;
+- proof metrics become a 2×2 grid;
+- portfolio project names collapse to numbered tabs;
+- project visual moves below project copy;
+- case-study entry navigation and footer links stack;
+- résumé download action moves below the name;
+- timeline rail is removed.
+
+Every visual change should be checked at a narrow mobile width and a desktop width before shipping.
+
+## 6. Content model and editorial rules
+
+Project data lives in `src/content/projects/*.md` and is validated by `src/content.config.ts`. The collection is the canonical source for homepage summaries and case-study detail.
+
+The same story should remain consistent across three places:
+
+1. project Markdown;
+2. the web résumé in `src/pages/resume.astro`;
+3. `public/henry-hung-resume.pdf`.
+
+Editorial principles:
+
+- Start with a real user or organizational problem.
+- State Henry's role and ownership precisely.
+- Separate measured prototype results from projections and strategy outcomes.
+- Attach context to every prominent metric.
+- Use “percentage points” for an absolute rate change.
+- Include what was chosen, what was rejected, and why.
+- End with a reflection or what would change next time.
+- Keep prose specific enough that it could not describe any generic AI product.
+
+## 7. Privacy and confidentiality
+
+Client work remains anonymized everywhere, including source code and media metadata.
+
+Allowed:
+
+- broad industry or company-size descriptions;
+- generic role labels;
+- sanitized or reconstructed screens;
+- aggregated prototype metrics whose use has been approved.
+
+Not allowed:
+
+- client or bank names;
+- client logos or recognizable brand colors;
+- real customer names, policy numbers, balances, or conversations;
+- original internal screenshots;
+- confidential architecture, prompts, documents, or datasets;
+- wording that implies a prototype result was a production outcome.
+
+Section J is a personal project. Its public portfolio demo uses fictional data and is intentionally separate from any private live roster.
+
+## 8. Technical and accessibility guardrails
+
+- Keep the site statically generated and dependency-light.
+- Prefer Astro components, semantic HTML, scoped CSS, and small vanilla scripts.
+- Do not add a client framework for isolated interactions.
+- Preserve visible focus styles and logical heading order.
+- Use real links and buttons; never make a `div` the only control.
+- Maintain no-JavaScript access to portfolio content.
+- Respect `prefers-reduced-motion` for all nonessential transitions.
+- Keep decorative visuals out of the accessibility tree and give meaningful product visuals descriptive labels.
+- Avoid hiding substantive content behind hover-only or motion-only interactions.
+
+## 9. Implementation history
+
+The current homepage imports `PortfolioExplorer.astro`. Earlier flip-book, dark-theme, background-section, and case-study-rail experiments are preserved in Git history, not in the active component directory. This keeps the public repository focused on the implementation that actually ships.
+
+Before editing or documenting a component, trace its imports from `src/pages/`. The current route composition is the source of truth; old commits are design history, not specification.
+
+## 10. Definition of done
+
+A site change is ready when:
+
+1. project and résumé claims remain consistent;
+2. `npm run build` succeeds;
+3. homepage, résumé, and all case studies work at desktop and mobile widths;
+4. keyboard navigation, focus states, and no-JavaScript portfolio fallback still work;
+5. reduced-motion behavior remains restrained;
+6. external links, demo details, screenshots, and confidentiality labels are correct;
+7. no client-identifying content has entered copy, assets, metadata, or code.
