@@ -12,7 +12,9 @@ const proof = [
 <section class="hero container">
   <div class="hero__grid">
     <div class="hero__copy">
-      <p class="hero__intro">Hi, I am Henry</p>
+      <p class="hero__intro" aria-label="Hi, I am Henry">
+        <span aria-hidden="true" data-typewriter-text>Hi, I am Henry</span><span class="hero__cursor" aria-hidden="true"></span>
+      </p>
       <h1 class="hero__headline">
         I understand how systems and people interact, and turn the insights into products that work
       </h1>
@@ -41,6 +43,40 @@ const proof = [
     ))}
   </div>
 </section>
+
+<script>
+  const intro = document.querySelector('[data-typewriter-text]');
+
+  if (intro instanceof HTMLElement && !intro.dataset.typed) {
+    intro.dataset.typed = 'true';
+    const text = intro.textContent ?? '';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reducedMotion) {
+      intro.textContent = '';
+      intro.closest('.hero__intro')?.classList.add('is-typing');
+
+      let index = 0;
+      const typeNextCharacter = () => {
+        intro.textContent = text.slice(0, index + 1);
+        index += 1;
+
+        if (index < text.length) {
+          window.setTimeout(typeNextCharacter, 90);
+        } else {
+          window.setTimeout(() => {
+            intro.closest('.hero__intro')?.classList.remove('is-typing');
+            intro.closest('.hero__intro')?.classList.add('is-typed');
+          }, 700);
+        }
+      };
+
+      window.setTimeout(typeNextCharacter, 350);
+    } else {
+      intro.closest('.hero__intro')?.classList.add('is-typed');
+    }
+  }
+</script>
 
 <style>
   .hero {
@@ -71,6 +107,30 @@ const proof = [
     font-weight: 600;
     line-height: 1.15;
     color: var(--accent);
+  }
+
+  .hero__cursor {
+    display: none;
+    width: 2px;
+    height: 0.9em;
+    margin-left: 3px;
+    background: currentColor;
+    vertical-align: -0.04em;
+  }
+
+  .hero__intro.is-typing .hero__cursor {
+    display: inline-block;
+    animation: typewriter-cursor 0.75s steps(1, end) infinite;
+  }
+
+  @keyframes typewriter-cursor {
+    0%, 48% {
+      opacity: 1;
+    }
+
+    49%, 100% {
+      opacity: 0;
+    }
   }
 
   .hero__lead {
@@ -226,6 +286,13 @@ const proof = [
 
     .hero__proof-item strong {
       font-size: 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__cursor {
+      display: none !important;
+      animation: none;
     }
   }
 </style>
