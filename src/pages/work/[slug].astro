@@ -61,10 +61,10 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 
         {p.screenshot && (
           <div class="case-study__screen-example">
+            {isClientProject && <p class="mono case-study__screen-note">{screenDisclaimer}</p>}
             <MockupFrame label={p.screenshotAlt ?? `Product mockup for ${p.title}`}>
               <img src={p.screenshot} alt="" />
             </MockupFrame>
-            {isClientProject && <p class="mono case-study__screen-note">{screenDisclaimer}</p>}
           </div>
         )}
 
@@ -77,8 +77,8 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 
         {project.id === 'agentic-requirements' && (
           <div class="case-study__screen-example">
-            <RequirementsVisuals />
             <p class="mono case-study__screen-note">{screenDisclaimer}</p>
+            <RequirementsVisuals />
           </div>
         )}
 
@@ -227,10 +227,16 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
   }
 
   .case-study__screen-note {
-    margin-top: var(--space-3) !important;
+    margin-top: var(--space-9) !important;
+    margin-bottom: var(--space-3);
     font-size: 11px !important;
     line-height: 1.45 !important;
     color: var(--meta);
+  }
+
+  .case-study__screen-note + :global(.mockup-frame),
+  .case-study__screen-note + :global(.requirements-visuals) {
+    margin-top: 0;
   }
 
   .case-study__project-note {

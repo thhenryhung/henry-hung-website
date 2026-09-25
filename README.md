@@ -14,7 +14,7 @@ The site presents four product case studies, with an emphasis on how customer ev
 Current projects:
 
 1. AI-native customer service agent
-2. Insurance agent co-pilot
+2. Relationship manager co-pilot
 3. Requirements extraction agent
 4. HBS Section Website
 
