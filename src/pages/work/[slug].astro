@@ -7,7 +7,6 @@ import PullQuote from '../../components/PullQuote.astro';
 import MockupFrame from '../../components/MockupFrame.astro';
 import DecisionBlock from '../../components/DecisionBlock.astro';
 import ConfidentialityNote from '../../components/ConfidentialityNote.astro';
-import RequirementsVisuals from '../../components/RequirementsVisuals.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => data.hasCaseStudy);
@@ -72,13 +71,6 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
           <div class="case-study__demo">
             <a href={p.demoUrl} class="mono" target="_blank" rel="noopener noreferrer">View live demo →</a>
             {p.demoNote && <p class="mono">{p.demoNote}</p>}
-          </div>
-        )}
-
-        {project.id === 'agentic-requirements' && (
-          <div class="case-study__screen-example">
-            <p class="mono case-study__screen-note">{screenDisclaimer}</p>
-            <RequirementsVisuals />
           </div>
         )}
 

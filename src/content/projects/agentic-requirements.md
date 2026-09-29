@@ -15,6 +15,8 @@ team: "10+ product owners · 30+ engineers"
 scope: "Requirements agent within a broader platform recovery"
 research: "10+ product-owner interviews"
 hasCaseStudy: true
+screenshot: "/images/requirements-mockup.png"
+screenshotAlt: "Sanitized requirements workspace showing a source-grounded epic, acceptance criteria, a documentation gap, evidence citations, and product-owner approval controls"
 diagramLabels:
   - "LEGACY DOCS"
   - "EPICS + STORIES"

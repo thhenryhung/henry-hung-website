@@ -1,6 +1,4 @@
 ---
-import RequirementsVisuals from './RequirementsVisuals.astro';
-
 interface Project {
   id: string;
   data: {
@@ -92,12 +90,7 @@ const { projects } = Astro.props;
           </div>
 
           <div class="portfolio-explorer__visual">
-            {project.id === 'agentic-requirements' ? (
-              <>
-                <p class="mono portfolio-explorer__screen-note">Sanitized screen example to protect client confidentiality</p>
-                <RequirementsVisuals compact />
-              </>
-            ) : project.data.screenshot ? (
+            {project.data.screenshot ? (
               <>
                 {project.data.tag === 'Client anonymized' && (
                   <p class="mono portfolio-explorer__screen-note">Sanitized screen example to protect client confidentiality</p>
@@ -344,6 +337,7 @@ const { projects } = Astro.props;
   }
 
   .portfolio-explorer__screen--insurance-copilot,
+  .portfolio-explorer__screen--agentic-requirements,
   .portfolio-explorer__screen--section-j {
     display: flex;
     align-items: center;
@@ -351,6 +345,7 @@ const { projects } = Astro.props;
   }
 
   .portfolio-explorer__screen--insurance-copilot img,
+  .portfolio-explorer__screen--agentic-requirements img,
   .portfolio-explorer__screen--section-j img {
     height: auto;
     max-height: 100%;
