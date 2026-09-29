@@ -5,22 +5,40 @@ interface Props {
 }
 
 const { compact = false, feature = false } = Astro.props;
+const portraitAlt = 'Henry Hung standing outdoors in Death Valley, badlands in the background';
 ---
 
 <figure class:list={["portrait", { "portrait--compact": compact, "portrait--feature": feature }]}>
-  <img
-    class="portrait__image"
-    src="/images/portrait.jpg"
-    alt="Henry Hung standing outdoors in Death Valley, badlands in the background"
-    width="212"
-    height="258"
-  />
+  {feature ? (
+    <picture>
+      <source media="(max-width: 768px)" srcset="/images/portrait.jpg" />
+      <img
+        class="portrait__image"
+        src="/images/portrait-square.jpg"
+        alt={portraitAlt}
+        width="768"
+        height="768"
+      />
+    </picture>
+  ) : (
+    <img
+      class="portrait__image"
+      src="/images/portrait.jpg"
+      alt={portraitAlt}
+      width="212"
+      height="258"
+    />
+  )}
 </figure>
 
 <style>
   .portrait {
     margin: 0;
     display: inline-block;
+  }
+
+  .portrait picture {
+    display: block;
   }
 
   .portrait__image {
@@ -36,11 +54,16 @@ const { compact = false, feature = false } = Astro.props;
     height: 156px;
   }
 
+  .portrait--feature {
+    width: 340px;
+    max-width: 100%;
+  }
+
   .portrait--feature .portrait__image {
-    width: 360px;
+    width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: contain;
+    aspect-ratio: 1;
+    object-fit: cover;
     object-position: center;
   }
 
@@ -50,9 +73,13 @@ const { compact = false, feature = false } = Astro.props;
       height: 186px;
     }
 
+    .portrait--feature {
+      width: 100%;
+      max-width: 360px;
+    }
+
     .portrait--feature .portrait__image {
-      width: min(100%, 360px);
-      height: auto;
+      aspect-ratio: 4 / 3;
     }
   }
 </style>
