@@ -4,6 +4,9 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
+const productLabel = compact
+  ? 'Sanitized requirements product screen with a source-grounded epic, citations, a documentation gap and product-owner review controls'
+  : 'Sanitized requirements product shown on a laptop screen, with a source-grounded epic, citations, a documentation gap and product-owner review controls';
 ---
 
 <div class:list={["requirements-visuals", { "requirements-visuals--compact": compact }]}>
@@ -90,7 +93,7 @@ const { compact = false } = Astro.props;
         <div
           class="requirements-app"
           role="img"
-          aria-label="Sanitized requirements product shown on a laptop screen, with a source-grounded epic, citations, a documentation gap and product-owner review controls"
+          aria-label={productLabel}
         >
           <div class="requirements-app__topbar">
             <div class="requirements-app__brand">
@@ -213,77 +216,46 @@ const { compact = false } = Astro.props;
 
   .requirements-visuals--compact .requirements-device {
     width: 100%;
-    max-width: 286px;
-    padding-bottom: 23px;
+    max-width: 280px;
+    padding-bottom: 0;
   }
 
   .requirements-visuals--compact .requirements-device__lid {
-    padding: 7px 7px 9px;
-    border-radius: 9px 9px 3px 3px;
+    height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
-  .requirements-visuals--compact .requirements-device__camera {
-    top: 2px;
-    width: 24px;
-    height: 4px;
-  }
-
-  .requirements-visuals--compact .requirements-device__base {
-    bottom: 9px;
-    left: -8px;
-    width: calc(100% + 16px);
-    height: 17px;
-    border-radius: 1px 1px 7px 7px;
-  }
-
-  .requirements-visuals--compact .requirements-device__base span {
-    width: 54px;
-    height: 5px;
-  }
-
-  .requirements-visuals--compact .requirements-device__shadow {
-    bottom: 1px;
-    height: 12px;
-    filter: blur(8px);
-  }
-
+  .requirements-visuals--compact .requirements-device__camera,
+  .requirements-visuals--compact .requirements-device__base,
+  .requirements-visuals--compact .requirements-device__shadow,
   .requirements-visuals--compact .requirements-browser {
-    min-height: 28px;
-    grid-template-columns: 38px minmax(0, 1fr) 22px;
-    gap: 4px;
-    padding: 0 6px;
+    display: none;
   }
 
-  .requirements-visuals--compact .requirements-browser__traffic {
-    gap: 4px;
+  .requirements-visuals--compact .requirements-device__screen {
+    width: 100%;
+    aspect-ratio: 751 / 630;
+    border: 1px solid var(--rule);
+    border-radius: 0;
   }
 
-  .requirements-visuals--compact .requirements-browser__traffic i {
-    width: 5px;
-    height: 5px;
+  .requirements-visuals--compact .requirements-device__screen::after {
+    display: none;
   }
 
-  .requirements-visuals--compact .requirements-browser__address {
-    justify-content: flex-start;
-    overflow: hidden;
-    padding: 3px 5px;
-    font-size: 6px;
-    text-overflow: ellipsis;
-  }
-
-  .requirements-visuals--compact .requirements-browser__tools {
-    gap: 3px;
-  }
-
-  .requirements-visuals--compact .requirements-browser__tools i {
-    width: 3px;
-    height: 3px;
+  .requirements-visuals--compact .requirements-app {
+    height: 100%;
   }
 
   .requirements-visuals--compact .requirements-app__topbar {
-    min-height: 42px;
+    min-height: 32px;
+    height: 32px;
     grid-template-columns: 1fr auto;
-    padding: 0 10px;
+    padding: 0 8px;
   }
 
   .requirements-visuals--compact .requirements-app__brand {
@@ -292,8 +264,8 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__mark {
-    width: 22px;
-    height: 22px;
+    width: 19px;
+    height: 19px;
     font-size: 8px;
   }
 
@@ -306,8 +278,8 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__user {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     font-size: 8px;
   }
 
@@ -317,11 +289,13 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__body {
-    min-height: 400px;
+    height: calc(100% - 32px);
+    min-height: 0;
   }
 
   .requirements-visuals--compact .requirements-app__main {
-    padding: 12px;
+    overflow: hidden;
+    padding: 8px;
   }
 
   .requirements-visuals--compact .requirements-app__breadcrumbs {
@@ -329,16 +303,16 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__title-row {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 9px;
-    padding-bottom: 10px;
+    align-items: center;
+    flex-direction: row;
+    gap: 4px;
+    margin-top: 5px;
+    padding-bottom: 6px;
   }
 
   .requirements-visuals--compact .requirements-app__title-row h3 {
-    margin-top: 5px;
-    font-size: 14px;
+    margin-top: 3px;
+    font-size: 10px;
   }
 
   .requirements-visuals--compact .requirements-app__status,
@@ -349,35 +323,39 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__content {
-    margin-top: 10px;
+    margin-top: 6px;
   }
 
   .requirements-visuals--compact .requirements-app__document {
-    padding: 12px;
+    padding: 8px;
   }
 
   .requirements-visuals--compact .requirements-app__story {
-    margin-top: 8px;
-    font-size: 9px;
-    line-height: 1.4;
+    margin-top: 5px;
+    font-size: 7px;
+    line-height: 1.35;
   }
 
   .requirements-visuals--compact .requirements-app__criteria {
-    margin-top: 10px;
-    padding-top: 9px;
+    margin-top: 6px;
+    padding-top: 5px;
   }
 
   .requirements-visuals--compact .requirements-app__criteria > div {
-    grid-template-columns: 17px 1fr auto;
-    gap: 5px;
-    margin-top: 6px;
-    font-size: 7px;
+    grid-template-columns: 14px 1fr auto;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 6px;
+  }
+
+  .requirements-visuals--compact .requirements-app__criteria > div:nth-of-type(n + 2) {
+    display: none;
   }
 
   .requirements-visuals--compact .requirements-app__criteria i {
-    width: 15px;
-    height: 15px;
-    font-size: 7px;
+    width: 12px;
+    height: 12px;
+    font-size: 6px;
   }
 
   .requirements-visuals--compact .requirements-app__criteria b {
@@ -386,16 +364,16 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__gap {
-    grid-template-columns: 22px 1fr;
-    gap: 6px;
-    margin-top: 10px;
-    padding: 8px;
+    grid-template-columns: 18px 1fr;
+    gap: 5px;
+    margin-top: 6px;
+    padding: 6px;
   }
 
   .requirements-visuals--compact .requirements-app__gap-icon {
-    width: 20px;
-    height: 20px;
-    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
   }
 
   .requirements-visuals--compact .requirements-app__gap strong {
@@ -407,24 +385,11 @@ const { compact = false } = Astro.props;
   }
 
   .requirements-visuals--compact .requirements-app__review-pill {
-    grid-column: 2;
-    justify-self: start;
-    padding: 3px 5px;
-    font-size: 6px;
+    display: none;
   }
 
   .requirements-visuals--compact .requirements-app__actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 7px;
-    margin-top: 9px;
-    padding-top: 9px;
-  }
-
-  .requirements-visuals--compact .requirements-app__button {
-    min-height: 25px;
-    padding: 4px 7px;
-    font-size: 7px;
+    display: none;
   }
 
   .requirements-visuals__kicker {

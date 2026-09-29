@@ -27,6 +27,8 @@ bandMetrics:
     caption: "Active users measured with Cloudflare Web Analytics"
   - metric: "1 week"
     caption: "From concept to launch"
+pullQuote: "I am tired of opening 10 tabs of shared Excels, Word Docs, and websites to keep up with section activities and announcements — the website provided such a relief."
+pullQuoteCite: "HBS sectionmate"
 decisions:
   - title: "Static simplicity over application complexity"
     chose: "A primarily static hub that opens immediately, with live infrastructure only where administrators need to update events."

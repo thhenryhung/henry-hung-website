@@ -37,8 +37,11 @@ const { compact = false, feature = false } = Astro.props;
   }
 
   .portrait--feature .portrait__image {
-    width: 300px;
-    height: 366px;
+    width: 360px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    object-position: center;
   }
 
   @media (max-width: 768px) {
@@ -48,8 +51,8 @@ const { compact = false, feature = false } = Astro.props;
     }
 
     .portrait--feature .portrait__image {
-      width: 220px;
-      height: 268px;
+      width: min(100%, 360px);
+      height: auto;
     }
   }
 </style>
