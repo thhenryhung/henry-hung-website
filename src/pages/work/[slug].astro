@@ -59,7 +59,7 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
         <p>{builtText}</p>
 
         {p.screenshot && (
-          <div class="case-study__screen-example">
+          <div class:list={["case-study__screen-example", `case-study__screen-example--${project.id}`]}>
             {isClientProject && <p class="mono case-study__screen-note">{screenDisclaimer}</p>}
             <MockupFrame label={p.screenshotAlt ?? `Product mockup for ${p.title}`}>
               <img src={p.screenshot} alt="" />
@@ -230,6 +230,13 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
   .case-study__screen-note + :global(.mockup-frame),
   .case-study__screen-note + :global(.requirements-visuals) {
     margin-top: 0;
+  }
+
+  .case-study__screen-example--cs-agent :global(.mockup-frame) {
+    max-width: 420px;
+    aspect-ratio: 866 / 1816;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .case-study__project-note {

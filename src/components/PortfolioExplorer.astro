@@ -336,6 +336,7 @@ const { projects } = Astro.props;
     line-height: 1.45;
   }
 
+  .portfolio-explorer__screen--cs-agent,
   .portfolio-explorer__screen--insurance-copilot,
   .portfolio-explorer__screen--agentic-requirements,
   .portfolio-explorer__screen--section-j {
@@ -344,6 +345,7 @@ const { projects } = Astro.props;
     padding: var(--space-5);
   }
 
+  .portfolio-explorer__screen--cs-agent img,
   .portfolio-explorer__screen--insurance-copilot img,
   .portfolio-explorer__screen--agentic-requirements img,
   .portfolio-explorer__screen--section-j img {
@@ -463,6 +465,17 @@ const { projects } = Astro.props;
 
     .portfolio-explorer__screen {
       aspect-ratio: 16 / 10;
+    }
+
+    .portfolio-explorer__screen--cs-agent {
+      width: min(100%, 420px);
+      aspect-ratio: 866 / 1816;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .portfolio-explorer__panel:hover .portfolio-explorer__screen--cs-agent img {
+      transform: none;
     }
   }
 
