@@ -15,7 +15,7 @@ team: "Solo build"
 scope: "Concept to launch in under one week"
 research: "5 sectionmate interviews"
 hasCaseStudy: true
-demoUrl: "https://section-j-portfolio-demo.pages.dev/"
+demoUrl: "https://section-website-demo.pages.dev/"
 demoNote: "Live demo, fictional data — password: demo"
 screenshot: "/images/section-j.png"
 screenshotAlt: "HBS Section Website homepage with four cards: Jalendar, Jocial, Jirectory, and Just for Fun"
