@@ -1,10 +1,19 @@
-# Henry Hung — personal website
+# Henry Hung — product portfolio
 
-Source for [henryhung.dev](https://henryhung.dev), Henry Hung's product-management portfolio and résumé.
+> A privacy-conscious Astro portfolio showcasing zero-to-one AI product work, product judgment, and measurable outcomes.
+
+[View the live site](https://henryhung.dev) · [LinkedIn](https://www.linkedin.com/in/henrythhung/) · [Résumé](https://henryhung.dev/resume)
 
 The site presents four product case studies, with an emphasis on how customer evidence becomes a product decision, a working system, and a measurable outcome. It is built as a static Astro site and deployed through Cloudflare Pages from the `main` branch of this repository.
 
-## What is live
+## What this repository demonstrates
+
+- **Product storytelling:** each case study connects a human signal to a product decision, implementation, and measured or projected outcome.
+- **End-to-end ownership:** content modeling, information architecture, responsive UI, accessibility, and deployment live in one deliberately small codebase.
+- **Responsible case-study design:** client work is anonymized, product screens are sanitized or recreated, and prototype results are distinguished from projections.
+- **Progressive enhancement:** keyboard navigation, no-JavaScript fallbacks, reduced-motion behavior, and intentional mobile layouts are built in.
+
+## Experience map
 
 - `/` — introduction, career proof points, and an interactive portfolio explorer
 - `/resume` — web résumé with experience before education, a desktop scroll-progress timeline, and a downloadable PDF
@@ -117,6 +126,8 @@ The web résumé is authored directly in `src/pages/resume.astro`. The downloada
 ### Images
 
 Public images live in `public/images/` and are referenced by root-relative paths such as `/images/assistant-mockup.webp`. Client-work screens must stay sanitized and generic. Preserve meaningful `screenshotAlt` text in the associated project Markdown even though the visual wrapper prevents duplicate alternative text.
+
+Before committing photographs or exported product screens, remove EXIF/XMP fields, device details, location data, face-region metadata, and other nonessential embedded metadata.
 
 ## Accessibility and fallbacks
 

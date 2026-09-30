@@ -1,7 +1,9 @@
 {
   "name": "henry-hung-website",
+  "description": "Privacy-conscious Astro portfolio showcasing zero-to-one AI product work and measurable outcomes.",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "engines": {
     "node": ">=22.12.0"
   },

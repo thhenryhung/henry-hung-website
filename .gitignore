@@ -18,7 +18,7 @@ pnpm-debug.log*
 .env.production
 
 # local tool and deployment state
-.claude/settings.local.json
+.claude/
 .wrangler/
 
 # macOS-specific files
