@@ -6,7 +6,7 @@ problem: "Rebuilding an enterprise platform meant product owners spending weeks 
 built: "An agent that reads legacy documentation, drafts epics and user stories, flags missing requirements and collaborates with product owners on revisions—turning weeks of authoring into days."
 caseStudyProblem: "I joined a Fortune 100 platform modernization that was four months behind. The immediate bottleneck was requirements: each build-ready epic took two to three weeks to extract from incomplete legacy documentation, while more than thirty engineers waited downstream."
 caseStudyBuilt: "I built an agent that extracts source material, drafts epics and stories, and flags documentation gaps. Suggested gap-filling content stays separate from source-backed requirements, and product owners must review and approve every draft."
-metric: "8×"
+metric: ">8×"
 metricCaption: "requirements throughput, reducing each epic from 2–3 weeks to 1–2 days."
 tag: "Client anonymized"
 context: "Fortune 100 platform modernization · client anonymized"
@@ -22,7 +22,7 @@ diagramLabels:
   - "EPICS + STORIES"
 standfirst: "A Fortune 100 platform rebuild was four months behind, and requirements had become the immediate bottleneck. I joined midway through the turnaround and built an agent that cut each epic from weeks to days—without removing the product owner's judgment."
 bandMetrics:
-  - metric: "8×"
+  - metric: ">8×"
     caption: "Requirements throughput"
   - metric: "2–3 weeks → 1–2 days"
     caption: "Time to produce each epic"
@@ -41,5 +41,5 @@ decisions:
     chose: "Using the target platform's standard features by default and customizing only when a capability created genuine competitive differentiation."
     over: "Reproducing every legacy behavior through custom development."
     because: "The rule focused engineering capacity on genuine differentiation and avoided long-term complexity for standard workflows."
-outcome: "Requirements throughput increased eightfold: each epic fell from two to three weeks to one to two days across more than ten product owners. Removing that bottleneck helped recover the program's four-month delay.\n\nIf I built it again, I would define draft accuracy, edit distance and approval-rate measures from the start."
+outcome: "Requirements throughput increased more than eightfold: each epic fell from two to three weeks to one to two days across more than ten product owners. Removing that bottleneck helped recover the program's four-month delay.\n\nIf I built it again, I would define draft accuracy, edit distance and approval-rate measures from the start."
 ---

@@ -40,5 +40,5 @@ decisions:
     chose: "Handing the conversation to a person when confidence fell below a threshold or the answer could not be grounded in an approved source."
     over: "Attempting to answer every question in order to maximize apparent automation."
     because: "A transparent handoff protected trust and made the system's limits explicit. An uncertain case was safer with a person than with a forced answer."
-outcome: "Prototype testing with representative users increased self-service resolution by ten percentage points versus the existing chatbot.\n\nThe work led to a multi-year product strategy, C-suite sponsorship and a path toward more than one million users. In hindsight, I would perfect fewer domains before expanding coverage."
+outcome: "Prototype testing with representative users increased self-service resolution by ten percentage points versus the existing chatbot.\n\nThe work led to an executive-endorsed multi-year roadmap with eight prioritized capabilities and a path toward more than one million users. In hindsight, I would perfect fewer domains before expanding coverage."
 ---
